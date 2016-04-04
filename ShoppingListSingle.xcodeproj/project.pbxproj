@@ -8,22 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		AD0F3A4A1CA1D3F100CDC1E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0F3A491CA1D3F100CDC1E2 /* AppDelegate.swift */; };
-		AD0F3A4C1CA1D3F100CDC1E2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0F3A4B1CA1D3F100CDC1E2 /* ViewController.swift */; };
+		AD0F3A4C1CA1D3F100CDC1E2 /* ShoppingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0F3A4B1CA1D3F100CDC1E2 /* ShoppingListViewController.swift */; };
 		AD0F3A4F1CA1D3F100CDC1E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD0F3A4D1CA1D3F100CDC1E2 /* Main.storyboard */; };
 		AD0F3A521CA1D3F100CDC1E2 /* ShoppingListSingle.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AD0F3A501CA1D3F100CDC1E2 /* ShoppingListSingle.xcdatamodeld */; };
 		AD0F3A541CA1D3F100CDC1E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD0F3A531CA1D3F100CDC1E2 /* Assets.xcassets */; };
 		AD0F3A571CA1D3F100CDC1E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD0F3A551CA1D3F100CDC1E2 /* LaunchScreen.storyboard */; };
+		AD6A96D11CA9E3710060BADC /* ShoppingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A96D01CA9E3710060BADC /* ShoppingItem.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AD0F3A461CA1D3F100CDC1E2 /* ShoppingListSingle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShoppingListSingle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD0F3A491CA1D3F100CDC1E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AD0F3A4B1CA1D3F100CDC1E2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AD0F3A4B1CA1D3F100CDC1E2 /* ShoppingListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListViewController.swift; sourceTree = "<group>"; };
 		AD0F3A4E1CA1D3F100CDC1E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AD0F3A511CA1D3F100CDC1E2 /* ShoppingListSingle.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ShoppingListSingle.xcdatamodel; sourceTree = "<group>"; };
 		AD0F3A531CA1D3F100CDC1E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD0F3A561CA1D3F100CDC1E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD0F3A581CA1D3F100CDC1E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD6A96D01CA9E3710060BADC /* ShoppingItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,8 +58,9 @@
 		AD0F3A481CA1D3F100CDC1E2 /* ShoppingListSingle */ = {
 			isa = PBXGroup;
 			children = (
+				AD6A96CF1CA9E3630060BADC /* Model */,
 				AD0F3A491CA1D3F100CDC1E2 /* AppDelegate.swift */,
-				AD0F3A4B1CA1D3F100CDC1E2 /* ViewController.swift */,
+				AD0F3A4B1CA1D3F100CDC1E2 /* ShoppingListViewController.swift */,
 				AD0F3A4D1CA1D3F100CDC1E2 /* Main.storyboard */,
 				AD0F3A531CA1D3F100CDC1E2 /* Assets.xcassets */,
 				AD0F3A551CA1D3F100CDC1E2 /* LaunchScreen.storyboard */,
@@ -65,6 +68,14 @@
 				AD0F3A501CA1D3F100CDC1E2 /* ShoppingListSingle.xcdatamodeld */,
 			);
 			path = ShoppingListSingle;
+			sourceTree = "<group>";
+		};
+		AD6A96CF1CA9E3630060BADC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AD6A96D01CA9E3710060BADC /* ShoppingItem.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,7 +148,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD0F3A4C1CA1D3F100CDC1E2 /* ViewController.swift in Sources */,
+				AD6A96D11CA9E3710060BADC /* ShoppingItem.swift in Sources */,
+				AD0F3A4C1CA1D3F100CDC1E2 /* ShoppingListViewController.swift in Sources */,
 				AD0F3A4A1CA1D3F100CDC1E2 /* AppDelegate.swift in Sources */,
 				AD0F3A521CA1D3F100CDC1E2 /* ShoppingListSingle.xcdatamodeld in Sources */,
 			);
@@ -287,6 +299,7 @@
 				AD0F3A5D1CA1D3F100CDC1E2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
