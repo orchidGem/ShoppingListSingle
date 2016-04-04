@@ -54,9 +54,24 @@ class ShoppingListViewController: UIViewController, UITextFieldDelegate, UITable
     
     
     @IBAction func shareShoppingList(sender: AnyObject) {
-        let shareThis = "Did this work"
-        let shareShoppingListViewController = UIActivityViewController(activityItems: [shareThis], applicationActivities: nil)
         
+        print(fetchedResultsController.fetchedObjects!.count)
+        
+        // If ShoppingItems List is empty
+        if fetchedResultsController.fetchedObjects!.count == 0  {
+            print("You do not have any items to share")
+            return
+        }
+        
+        // Build list string by looping over ShoppingItem Objects
+        var list: String = ""
+        
+        for item in fetchedResultsController.fetchedObjects! {
+            list += item.name + "\n"
+        }
+        
+        // Share List
+        let shareShoppingListViewController = UIActivityViewController(activityItems: [list], applicationActivities: nil)
         presentViewController(shareShoppingListViewController, animated: true, completion: nil)
         
         shareShoppingListViewController.completionWithItemsHandler = {(activityType, completed:Bool, returnedItems:[AnyObject]?, error: NSError?) in
