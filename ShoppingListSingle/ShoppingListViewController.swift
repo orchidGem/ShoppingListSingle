@@ -72,6 +72,7 @@ class ShoppingListViewController: UIViewController, UITextFieldDelegate, UITable
         
         // Share List
         let shareShoppingListViewController = UIActivityViewController(activityItems: [list], applicationActivities: nil)
+        shareShoppingListViewController.setValue("Laura's Shopping List", forKey: "Subject")
         presentViewController(shareShoppingListViewController, animated: true, completion: nil)
         
         shareShoppingListViewController.completionWithItemsHandler = {(activityType, completed:Bool, returnedItems:[AnyObject]?, error: NSError?) in
