@@ -66,7 +66,7 @@ class FoodForkRecipes {
             var recipesDictionary = [Recipe]()
             
             for recipe in recipesArray {
-                let recipe = Recipe(title: recipe["title"] as! String, imageURL: recipe["image_url"] as! String, recipeID: recipe["recipe_id"] as! String)
+                let recipe = Recipe(title: recipe["title"] as! String, imageURL: recipe["image_url"] as! String, recipeID: recipe["recipe_id"] as! String, ingredients: nil)
                 recipesDictionary.append(recipe)
             }
             

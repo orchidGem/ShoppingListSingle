@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Uya-5T-TmX">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Recipes-->
@@ -175,11 +176,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="278" translatesAutoresizingMaskIntoConstraints="NO" id="g5v-DV-GIw">
-                                <rect key="frame" x="20" y="28" width="560" height="278"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="560" placeholderIntrinsicHeight="278" translatesAutoresizingMaskIntoConstraints="NO" id="g5v-DV-GIw">
+                                <rect key="frame" x="160" y="84" width="280" height="280"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="IXE-PH-LlS"/>
+                                    <constraint firstAttribute="height" constant="280" id="h61-QO-GhB"/>
+                                </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Smg-ar-44w">
-                                <rect key="frame" x="20" y="370" width="560" height="26"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Smg-ar-44w">
+                                <rect key="frame" x="20" y="50" width="560" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="Ayh-9p-XyW"/>
                                 </constraints>
@@ -187,18 +192,58 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wgb-1X-wOF">
+                                <rect key="frame" x="160" y="384" width="279" height="38"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredients" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8v3-1Y-1DV">
+                                        <rect key="frame" x="0.0" y="0.0" width="86" height="38"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="86" id="PM4-7e-jAB"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mhu-FH-hOe">
+                                        <rect key="frame" x="106" y="0.0" width="173" height="38"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="173" id="5mb-pV-5sy"/>
+                                            <constraint firstAttribute="height" constant="38" id="P7r-Ht-cw4"/>
+                                        </constraints>
+                                        <inset key="contentEdgeInsets" minX="15" minY="10" maxX="15" maxY="10"/>
+                                        <state key="normal" title="Add to Shopping List">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="addIngredientsToList:" destination="JCH-hU-H7g" eventType="touchUpInside" id="ZbW-7j-Z3F"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DOM-bE-fkE">
+                                <rect key="frame" x="279" y="434" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Smg-ar-44w" secondAttribute="trailing" constant="20" id="I6p-9p-OeE"/>
-                            <constraint firstItem="Smg-ar-44w" firstAttribute="top" secondItem="g5v-DV-GIw" secondAttribute="bottom" constant="64" id="UVm-tS-mQg"/>
-                            <constraint firstItem="Smg-ar-44w" firstAttribute="leading" secondItem="Qxh-Hu-bTZ" secondAttribute="leading" constant="20" id="bqa-Bh-zvk"/>
-                            <constraint firstItem="g5v-DV-GIw" firstAttribute="leading" secondItem="Qxh-Hu-bTZ" secondAttribute="leading" constant="20" id="hU6-QG-9Jh"/>
-                            <constraint firstItem="g5v-DV-GIw" firstAttribute="top" secondItem="dKq-O3-MPX" secondAttribute="bottom" constant="8" id="mmb-qR-tYg"/>
-                            <constraint firstAttribute="trailing" secondItem="g5v-DV-GIw" secondAttribute="trailing" constant="20" id="ySR-D3-ORL"/>
+                            <constraint firstItem="g5v-DV-GIw" firstAttribute="centerX" secondItem="Qxh-Hu-bTZ" secondAttribute="centerX" id="1sH-8P-KrI"/>
+                            <constraint firstItem="wgb-1X-wOF" firstAttribute="leading" secondItem="g5v-DV-GIw" secondAttribute="leading" id="2hO-Gd-k6o"/>
+                            <constraint firstItem="Smg-ar-44w" firstAttribute="leading" secondItem="Qxh-Hu-bTZ" secondAttribute="leadingMargin" id="Jfi-RL-sB9"/>
+                            <constraint firstItem="Smg-ar-44w" firstAttribute="centerX" secondItem="g5v-DV-GIw" secondAttribute="centerX" id="V6e-d5-SCU"/>
+                            <constraint firstItem="g5v-DV-GIw" firstAttribute="top" secondItem="Smg-ar-44w" secondAttribute="bottom" constant="8" id="f9F-XZ-b44"/>
+                            <constraint firstItem="8v3-1Y-1DV" firstAttribute="top" secondItem="g5v-DV-GIw" secondAttribute="bottom" constant="20" id="mh3-4R-qfM"/>
+                            <constraint firstItem="DOM-bE-fkE" firstAttribute="top" secondItem="mhu-FH-hOe" secondAttribute="bottom" constant="12" id="nx1-Zt-BH0"/>
+                            <constraint firstItem="Smg-ar-44w" firstAttribute="top" secondItem="dKq-O3-MPX" secondAttribute="bottom" constant="30" id="uye-EW-y7i"/>
+                            <constraint firstItem="DOM-bE-fkE" firstAttribute="centerX" secondItem="Qxh-Hu-bTZ" secondAttribute="centerX" id="ygU-hC-bNh"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addToListButton" destination="mhu-FH-hOe" id="YMb-CQ-jkE"/>
+                        <outlet property="ingredients" destination="DOM-bE-fkE" id="JKF-Du-ng8"/>
                         <outlet property="recipeImage" destination="g5v-DV-GIw" id="rIq-2i-cqa"/>
                         <outlet property="recipeTitle" destination="Smg-ar-44w" id="Mvl-lT-5Um"/>
                     </connections>
