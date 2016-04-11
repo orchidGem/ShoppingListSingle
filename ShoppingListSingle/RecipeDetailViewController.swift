@@ -27,23 +27,23 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
         super.viewDidLoad()
         
         recipeTitle.text = recipe.title
-        ingredients.text = recipe.ingredients?.joinWithSeparator("\n")
+        //ingredients.text = recipe.ingredients?.joinWithSeparator("\n")
         
         let imageURL = NSURL(string: recipe.imageURL!)
         recipeImage.image = UIImage( data: NSData(contentsOfURL: imageURL!)! )
     }
     
-    @IBAction func addIngredientsToList(sender: AnyObject) {
-        
-        for ingredient in recipe.ingredients! {
-            insertNewObject(ingredient)
-        }
-        
-        print("ingredients added!")
-        
-        addToListButton.setTitle("Items Added!", forState: .Normal)
-        
-    }
+//    @IBAction func addIngredientsToList(sender: AnyObject) {
+//        
+//        for ingredient in recipe.ingredients! {
+//            insertNewObject(ingredient)
+//        }
+//        
+//        print("ingredients added!")
+//        
+//        addToListButton.setTitle("Items Added!", forState: .Normal)
+//        
+//    }
     
     // MARK: - Fetched results controller
     

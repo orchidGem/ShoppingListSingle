@@ -55,8 +55,6 @@ class ShoppingListViewController: UIViewController, UITextFieldDelegate, UITable
     
     @IBAction func shareShoppingList(sender: AnyObject) {
         
-        print(fetchedResultsController.fetchedObjects!.count)
-        
         // If ShoppingItems List is empty
         if fetchedResultsController.fetchedObjects!.count == 0  {
             print("You do not have any items to share")
@@ -79,6 +77,25 @@ class ShoppingListViewController: UIViewController, UITextFieldDelegate, UITable
                 print("you shared it!")
         }
     }
+    
+    // Delete Items in Shopping List
+    @IBAction func deleteAllItems(sender: AnyObject) {
+        
+        let context = fetchedResultsController.managedObjectContext
+        
+        for item in fetchedResultsController.fetchedObjects! {
+            context.deleteObject(item as! NSManagedObject)
+        }
+        
+        do {
+            try context.save()
+        } catch {
+            print("Error deleting item")
+            abort()
+        }
+        
+    }
+    
     
     
     //MARK: - UITextField Delegate
@@ -165,9 +182,7 @@ class ShoppingListViewController: UIViewController, UITextFieldDelegate, UITable
             do {
                 try context.save()
             } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                //print("Unresolved error \(error), \(error.userInfo)")
+                print("Error deleting item")
                 abort()
             }
         }

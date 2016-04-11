@@ -13,48 +13,81 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
 
     @IBOutlet weak var recipesTableView: UITableView!
     
-    //var recipes = [Recipe]()
-    let recipes = [
+    var recipes = [Recipe]()
+//    let allRecipes = [
+//    
+//        Recipe(title: "Turkery Sausage Sliders", imageURL: "https://photo.foodgawker.com/wp-content/uploads/2016/04/2623949.jpg", recipeID: nil, ingredients: ["Breakfast Sausage", "8 Eggs", "1/2 cup almond milk", "pepper", "salt", "8 Kings Hawaiin rolls"]),
+//        Recipe(title: "Lemon Thyme Sidecar", imageURL: "https://photo2.foodgawker.com/wp-content/uploads/2016/04/2624247.jpg", recipeID: nil, ingredients: ["1 Tbsp lemon juice", "1/4 cupe cognac", "1 Tbsp triple sec", "Sugar", "1 Lemon Wedge", "Simple Syrup"]),
+//        
+//        Recipe(title: "Fatoush Salad", imageURL: "https://photo.foodgawker.com/wp-content/uploads/2016/04/2624609.jpg", recipeID: nil, ingredients: ["Cucumbers", "Tomatoes", "Lettuce", "Sweet Corn", "Sumac", "Parsley"]),
+//        
+//        Recipe(title: "Salted Toffee Cookie Bars", imageURL: "https://photo2.foodgawker.com/wp-content/uploads/2016/04/2624441.jpg", recipeID: nil, ingredients: ["Butter", "Sugar", "Brown Sugar", "Flour", "Vanilla", "Salt"]),
+//        
+//    ]
     
-        Recipe(title: "Turkery Sausage Sliders", imageURL: "https://photo.foodgawker.com/wp-content/uploads/2016/04/2623949.jpg", recipeID: nil, ingredients: ["Breakfast Sausage", "8 Eggs", "1/2 cup almond milk", "pepper", "salt", "8 Kings Hawaiin rolls"]),
-        Recipe(title: "Lemon Thyme Sidecar", imageURL: "https://photo2.foodgawker.com/wp-content/uploads/2016/04/2624247.jpg", recipeID: nil, ingredients: ["1 Tbsp lemon juice", "1/4 cupe cognac", "1 Tbsp triple sec", "Sugar", "1 Lemon Wedge", "Simple Syrup"])
-    ]
+    let favoriteRecipes = [
+        
+        Recipe(title: "Lemon Thyme Sidecar", imageURL: "https://photo2.foodgawker.com/wp-content/uploads/2016/04/2624247.jpg", recipeID: nil, ingredients: ["1 Tbsp lemon juice", "1/4 cupe cognac", "1 Tbsp triple sec", "Sugar", "1 Lemon Wedge", "Simple Syrup"]),
+        
+        Recipe(title: "Salted Toffee Cookie Bars", imageURL: "https://photo2.foodgawker.com/wp-content/uploads/2016/04/2624441.jpg", recipeID: nil, ingredients: ["Butter", "Sugar", "Brown Sugar", "Flour", "Vanilla", "Salt"]),
+        
+        ]
+    
+    
      
     override func viewDidLoad() {
-        
-        print("view did load")
         
         super.viewDidLoad()
         
         recipesTableView.delegate = self
         recipesTableView.dataSource = self
         
+        //recipes = allRecipes
+        
         
         // Fetch Recipes
-//        FoodForkRecipes.sharedInstance.getFoodForkRequest() { (success, recipesDictionary, errorString) in
-//            
-//            if success {
-//                
-//                self.recipes = recipesDictionary
-//                
-//                dispatch_async(dispatch_get_main_queue(), {
-//                    self.recipesTableView.reloadData()
-//                })
-//                
-//            } else {
-//                print("error with recipe request")
-//            }
-//        }
+        FoodForkRecipes.sharedInstance.getFoodForkRequest() { (success, recipesDictionary, errorString) in
+            
+            if success {
+                
+                self.recipes = recipesDictionary
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.recipesTableView.reloadData()
+                })
+                
+            } else {
+                print("error with recipe request")
+            }
+        }
         
     }
     
     override func viewWillAppear(animated: Bool) {
         
-        print("view will appear")
-        
         super.viewWillAppear(animated)
 
     }
+    
+    // MARK: Actions
+    
+    // Toggle Recipes for All and Favorites
+//    @IBAction func toggleRecipes(sender: AnyObject) {
+//        if sender.selectedSegmentIndex == 0 { // ALL
+//            
+//            recipes = allRecipes
+//            
+//            
+//        } else { // Favorites
+//            
+//            recipes = favoriteRecipes
+//            
+//        }
+//        
+//        recipesTableView.reloadData()
+//    }
+//    
+    
     
     // MARK: TableView
     
@@ -66,11 +99,11 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
         let cell = tableView.dequeueReusableCellWithIdentifier("RecipeCell", forIndexPath: indexPath)
         
         let recipe = recipes[indexPath.row]
-        let imageURL = NSURL(string: recipe.imageURL!)
-        
-        
         cell.textLabel?.text = recipe.title
-        cell.imageView?.image = UIImage( data: NSData(contentsOfURL: imageURL!)! )
+
+        //cell.imageView!.image = image;
+        
+        
         return cell
     }
     

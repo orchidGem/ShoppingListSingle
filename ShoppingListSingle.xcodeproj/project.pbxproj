@@ -13,11 +13,11 @@
 		AD0F3A521CA1D3F100CDC1E2 /* ShoppingListSingle.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AD0F3A501CA1D3F100CDC1E2 /* ShoppingListSingle.xcdatamodeld */; };
 		AD0F3A541CA1D3F100CDC1E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD0F3A531CA1D3F100CDC1E2 /* Assets.xcassets */; };
 		AD0F3A571CA1D3F100CDC1E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD0F3A551CA1D3F100CDC1E2 /* LaunchScreen.storyboard */; };
-		AD57DDA71CB5A55600F75893 /* RecipesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD57DDA61CB5A55600F75893 /* RecipesListViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		AD57DDA91CB5AFE500F75893 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD57DDA81CB5AFE500F75893 /* Recipe.swift */; settings = {ASSET_TAGS = (); }; };
-		AD57DDAD1CB5BB0700F75893 /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD57DDAC1CB5BB0700F75893 /* RecipeDetailViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		AD6A96D11CA9E3710060BADC /* ShoppingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A96D01CA9E3710060BADC /* ShoppingItem.swift */; settings = {ASSET_TAGS = (); }; };
-		AD70C1CD1CB41F7C00425A74 /* FoodForkRecipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD70C1CC1CB41F7C00425A74 /* FoodForkRecipes.swift */; settings = {ASSET_TAGS = (); }; };
+		AD57DDA71CB5A55600F75893 /* RecipesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD57DDA61CB5A55600F75893 /* RecipesListViewController.swift */; };
+		AD57DDA91CB5AFE500F75893 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD57DDA81CB5AFE500F75893 /* Recipe.swift */; };
+		AD57DDAD1CB5BB0700F75893 /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD57DDAC1CB5BB0700F75893 /* RecipeDetailViewController.swift */; };
+		AD6A96D11CA9E3710060BADC /* ShoppingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A96D01CA9E3710060BADC /* ShoppingItem.swift */; };
+		AD70C1CD1CB41F7C00425A74 /* FoodForkRecipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD70C1CC1CB41F7C00425A74 /* FoodForkRecipes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -121,6 +121,7 @@
 				TargetAttributes = {
 					AD0F3A451CA1D3F100CDC1E2 = {
 						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = 859LK3T2WH;
 					};
 				};
 			};
@@ -278,10 +279,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ShoppingListSingle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ivie.ShoppingListSingle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -289,10 +293,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ShoppingListSingle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ivie.ShoppingListSingle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
