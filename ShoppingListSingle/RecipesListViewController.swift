@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import Alamofire
+import AlamofireImage
 
 class RecipesListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -100,10 +102,19 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
         
         let recipe = recipes[indexPath.row]
         cell.textLabel?.text = recipe.title
+        
+        // Load image asynchronously with AlamoFire
+        Alamofire.request(.GET, recipe.imageURL!)
+            .responseImage { response in
+                debugPrint(response.result)
+                
+                if let image = response.result.value {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        cell.imageView!.image = image
+                    })
+                }
+        }
 
-        //cell.imageView!.image = image;
-        
-        
         return cell
     }
     
