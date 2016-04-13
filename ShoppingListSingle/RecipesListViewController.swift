@@ -68,7 +68,7 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
     override func viewWillAppear(animated: Bool) {
         
         super.viewWillAppear(animated)
-
+        
     }
     
     // MARK: Actions
@@ -102,11 +102,12 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
         
         let recipe = recipes[indexPath.row]
         cell.textLabel?.text = recipe.title
+        cell.imageView?.image = UIImage(named: "placeholder")
+        cell.imageView?.contentMode = .ScaleToFill
         
         // Load image asynchronously with AlamoFire
         Alamofire.request(.GET, recipe.imageURL!)
             .responseImage { response in
-                debugPrint(response.result)
                 
                 if let image = response.result.value {
                     dispatch_async(dispatch_get_main_queue(), {
@@ -114,7 +115,7 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
                     })
                 }
         }
-
+        
         return cell
     }
     
@@ -125,7 +126,9 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
         let recipeDetailViewController = storyboard?.instantiateViewControllerWithIdentifier("RecipeDetailViewController") as! RecipeDetailViewController
         recipeDetailViewController.recipe = recipe
         
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
         navigationController?.pushViewController(recipeDetailViewController, animated: true)
     }
-
+    
 }
