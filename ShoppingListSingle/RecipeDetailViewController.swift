@@ -13,7 +13,7 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
 
     @IBOutlet weak var recipeImage: UIImageView!
     @IBOutlet weak var recipeTitle: UILabel!
-    @IBOutlet weak var ingredients: UILabel!
+    @IBOutlet weak var ingredientsLabel: UILabel!
     @IBOutlet weak var addToListButton: UIButton!
     
     var recipe: Recipe!
@@ -26,24 +26,32 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Get recipe ingredients
+        FoodForkRecipes.sharedInstance.getRecipeFromID(recipe.recipeID!) { (success, ingredients, error) in
+            
+            self.recipe.ingredients = ingredients
+            self.ingredientsLabel.text = self.recipe.ingredients!.joinWithSeparator("\n")
+            
+        }
+        
         recipeTitle.text = recipe.title
-        //ingredients.text = recipe.ingredients?.joinWithSeparator("\n")
+        
         
         let imageURL = NSURL(string: recipe.imageURL!)
         recipeImage.image = UIImage( data: NSData(contentsOfURL: imageURL!)! )
     }
     
-//    @IBAction func addIngredientsToList(sender: AnyObject) {
-//        
-//        for ingredient in recipe.ingredients! {
-//            insertNewObject(ingredient)
-//        }
-//        
-//        print("ingredients added!")
-//        
-//        addToListButton.setTitle("Items Added!", forState: .Normal)
-//        
-//    }
+    @IBAction func addIngredientsToList(sender: AnyObject) {
+        
+        for ingredient in self.recipe.ingredients! {
+            insertNewObject(ingredient)
+        }
+        
+        print("ingredients added!")
+        
+        addToListButton.setTitle("Items Added!", forState: .Normal)
+        
+    }
     
     // MARK: - Fetched results controller
     

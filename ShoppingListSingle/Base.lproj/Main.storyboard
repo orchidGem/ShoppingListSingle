@@ -298,7 +298,7 @@
                     </view>
                     <connections>
                         <outlet property="addToListButton" destination="mhu-FH-hOe" id="YMb-CQ-jkE"/>
-                        <outlet property="ingredients" destination="DOM-bE-fkE" id="JKF-Du-ng8"/>
+                        <outlet property="ingredientsLabel" destination="DOM-bE-fkE" id="F2l-dH-QOO"/>
                         <outlet property="recipeImage" destination="g5v-DV-GIw" id="rIq-2i-cqa"/>
                         <outlet property="recipeTitle" destination="Smg-ar-44w" id="Mvl-lT-5Um"/>
                     </connections>

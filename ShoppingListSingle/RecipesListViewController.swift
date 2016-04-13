@@ -16,16 +16,6 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var recipesTableView: UITableView!
     
     var recipes = [Recipe]()
-//    let allRecipes = [
-//    
-//        Recipe(title: "Turkery Sausage Sliders", imageURL: "https://photo.foodgawker.com/wp-content/uploads/2016/04/2623949.jpg", recipeID: nil, ingredients: ["Breakfast Sausage", "8 Eggs", "1/2 cup almond milk", "pepper", "salt", "8 Kings Hawaiin rolls"]),
-//        Recipe(title: "Lemon Thyme Sidecar", imageURL: "https://photo2.foodgawker.com/wp-content/uploads/2016/04/2624247.jpg", recipeID: nil, ingredients: ["1 Tbsp lemon juice", "1/4 cupe cognac", "1 Tbsp triple sec", "Sugar", "1 Lemon Wedge", "Simple Syrup"]),
-//        
-//        Recipe(title: "Fatoush Salad", imageURL: "https://photo.foodgawker.com/wp-content/uploads/2016/04/2624609.jpg", recipeID: nil, ingredients: ["Cucumbers", "Tomatoes", "Lettuce", "Sweet Corn", "Sumac", "Parsley"]),
-//        
-//        Recipe(title: "Salted Toffee Cookie Bars", imageURL: "https://photo2.foodgawker.com/wp-content/uploads/2016/04/2624441.jpg", recipeID: nil, ingredients: ["Butter", "Sugar", "Brown Sugar", "Flour", "Vanilla", "Salt"]),
-//        
-//    ]
     
     let favoriteRecipes = [
         
@@ -48,7 +38,7 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
         
         
         // Fetch Recipes
-        FoodForkRecipes.sharedInstance.getFoodForkRequest() { (success, recipesDictionary, errorString) in
+        FoodForkRecipes.sharedInstance.getRecentRecipes() { (success, recipesDictionary, errorString) in
             
             if success {
                 
@@ -121,9 +111,10 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        let recipe = recipes[indexPath.row]
+        var recipe = recipes[indexPath.row]
         
         let recipeDetailViewController = storyboard?.instantiateViewControllerWithIdentifier("RecipeDetailViewController") as! RecipeDetailViewController
+ 
         recipeDetailViewController.recipe = recipe
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
