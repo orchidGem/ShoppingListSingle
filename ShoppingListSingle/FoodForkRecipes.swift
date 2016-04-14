@@ -20,8 +20,6 @@ class FoodForkRecipes {
         
         let task = session.dataTaskWithRequest(request) {(data, response, error) in
             
-            print("retrieving recipes")
-            
             // GAURD: was there an error?
             guard (error == nil) else {
                 print("there was an error with your request: \(error)")
@@ -70,8 +68,6 @@ class FoodForkRecipes {
                 recipesDictionary.append(recipe)
             }
             
-            print("recipes retrieved")
-            
             completionHandler(success: true, recipeData: recipesDictionary, error: nil)
             
         }
@@ -88,8 +84,6 @@ class FoodForkRecipes {
         let request = NSURLRequest(URL: url!)
         
         let task = session.dataTaskWithRequest(request) {(data, response, error) in
-            
-            print("retrieving ingredients from recipe")
             
             // GAURD: was there an error?
             guard (error == nil) else {

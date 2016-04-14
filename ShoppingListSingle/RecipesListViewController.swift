@@ -88,12 +88,11 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("RecipeCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("RecipeCell") as! RecipeTableViewCell
         
         let recipe = recipes[indexPath.row]
-        cell.textLabel?.text = recipe.title
-        cell.imageView?.image = UIImage(named: "placeholder")
-        cell.imageView?.contentMode = .ScaleToFill
+        cell.recipeTitleLabel.text = recipe.title
+        cell.recipeImageView.image = UIImage(named: "placeholder")
         
         // Load image asynchronously with AlamoFire
         Alamofire.request(.GET, recipe.imageURL!)
@@ -101,7 +100,7 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
                 
                 if let image = response.result.value {
                     dispatch_async(dispatch_get_main_queue(), {
-                        cell.imageView!.image = image
+                        cell.recipeImageView.image = image
                     })
                 }
         }
@@ -111,7 +110,7 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        var recipe = recipes[indexPath.row]
+        let recipe = recipes[indexPath.row]
         
         let recipeDetailViewController = storyboard?.instantiateViewControllerWithIdentifier("RecipeDetailViewController") as! RecipeDetailViewController
  

@@ -26,7 +26,10 @@ class ShoppingListViewController: UIViewController, UITextFieldDelegate, UITable
         tableView.delegate = self
         tableView.dataSource = self
         itemTextfield.delegate = self
-        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        print(fetchedResultsController.fetchedObjects!.count)
     }
     
     // MARK: Actions
@@ -189,6 +192,7 @@ class ShoppingListViewController: UIViewController, UITextFieldDelegate, UITable
     }
     
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
+        print("configuring the cell")
         let object = self.fetchedResultsController.objectAtIndexPath(indexPath)
         cell.textLabel!.text = object.name
     }

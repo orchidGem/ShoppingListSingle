@@ -26,11 +26,17 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.ingredientsLabel.text = ""
+        
         // Get recipe ingredients
         FoodForkRecipes.sharedInstance.getRecipeFromID(recipe.recipeID!) { (success, ingredients, error) in
+            if success {
+                self.recipe.ingredients = ingredients
+                self.ingredientsLabel.text = self.recipe.ingredients!.joinWithSeparator("\n")
+            } else {
+                self.ingredientsLabel.text = "Unable to load ingredients"
+            }
             
-            self.recipe.ingredients = ingredients
-            self.ingredientsLabel.text = self.recipe.ingredients!.joinWithSeparator("\n")
             
         }
         
@@ -43,11 +49,12 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
     
     @IBAction func addIngredientsToList(sender: AnyObject) {
         
+        print("Adding this many ingredients to list")
+        print(self.recipe.ingredients!.count)
+        
         for ingredient in self.recipe.ingredients! {
             insertNewObject(ingredient)
         }
-        
-        print("ingredients added!")
         
         addToListButton.setTitle("Items Added!", forState: .Normal)
         
@@ -98,6 +105,7 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
         do {
             try context.save()
         } catch {
+            print("unable to save ingredient")
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             //print("Unresolved error \(error), \(error.userInfo)")
