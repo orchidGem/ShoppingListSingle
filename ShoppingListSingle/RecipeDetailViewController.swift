@@ -18,6 +18,7 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
     
     var recipe: Recipe!
     
+    // Managed Object for Shopping Items
     lazy var managedObjectContext: NSManagedObjectContext = {
         var appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         return appDel.managedObjectContext
@@ -29,15 +30,13 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
         self.ingredientsLabel.text = ""
         
         // Get recipe ingredients
-        FoodForkRecipes.sharedInstance.getRecipeFromID(recipe.recipeID!) { (success, ingredients, error) in
+        FoodForkRecipes.sharedInstance.getRecipeIngredients(recipe.recipeID!) { (success, ingredients, error) in
             if success {
                 self.recipe.ingredients = ingredients
                 self.ingredientsLabel.text = self.recipe.ingredients!.joinWithSeparator("\n")
             } else {
                 self.ingredientsLabel.text = "Unable to load ingredients"
             }
-            
-            
         }
         
         recipeTitle.text = recipe.title
@@ -45,6 +44,15 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
         
         let imageURL = NSURL(string: recipe.imageURL!)
         recipeImage.image = UIImage( data: NSData(contentsOfURL: imageURL!)! )
+    }
+    
+    // MARK: Actions
+    
+    @IBAction func addRecipeToFavorites(sender: AnyObject) {
+        
+        print("adding recipe to favorites")
+        FavoriteRecipes.sharedInstance.saveFavoriteRecipes(recipe.recipeID!)
+        
     }
     
     @IBAction func addIngredientsToList(sender: AnyObject) {
@@ -59,6 +67,16 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
         addToListButton.setTitle("Items Added!", forState: .Normal)
         
     }
+    
+    @IBAction func viewDirections(sender: AnyObject) {
+        let app = UIApplication.sharedApplication()
+        guard let recipeURL = recipe.recipeURL else {
+            print("recipe has not online directions")
+            return
+        }
+        app.openURL(NSURL(string: recipeURL)!)
+    }
+    
     
     // MARK: - Fetched results controller
     

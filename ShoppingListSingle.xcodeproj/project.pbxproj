@@ -20,6 +20,7 @@
 		AD57DDAD1CB5BB0700F75893 /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD57DDAC1CB5BB0700F75893 /* RecipeDetailViewController.swift */; };
 		AD6A96D11CA9E3710060BADC /* ShoppingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A96D01CA9E3710060BADC /* ShoppingItem.swift */; };
 		AD70C1CD1CB41F7C00425A74 /* FoodForkRecipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD70C1CC1CB41F7C00425A74 /* FoodForkRecipes.swift */; };
+		ADDB5A9B1CC1741200CBBD09 /* FavoriteRecipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDB5A9A1CC1741200CBBD09 /* FavoriteRecipes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		AD57DDAC1CB5BB0700F75893 /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewController.swift; sourceTree = "<group>"; };
 		AD6A96D01CA9E3710060BADC /* ShoppingItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingItem.swift; sourceTree = "<group>"; };
 		AD70C1CC1CB41F7C00425A74 /* FoodForkRecipes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodForkRecipes.swift; sourceTree = "<group>"; };
+		ADDB5A9A1CC1741200CBBD09 /* FavoriteRecipes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteRecipes.swift; sourceTree = "<group>"; };
 		D75FCADDCE2C47E8784E5CB7 /* Pods-ShoppingListSingle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoppingListSingle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShoppingListSingle/Pods-ShoppingListSingle.debug.xcconfig"; sourceTree = "<group>"; };
 		FAC70ECDD71764336B855BDB /* Pods_ShoppingListSingle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShoppingListSingle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -94,10 +96,10 @@
 			children = (
 				AD6A96CF1CA9E3630060BADC /* Model */,
 				AD0F3A491CA1D3F100CDC1E2 /* AppDelegate.swift */,
-				AD0F3A4B1CA1D3F100CDC1E2 /* ShoppingListViewController.swift */,
 				AD57DDA61CB5A55600F75893 /* RecipesListViewController.swift */,
 				AD061FD01CBFE035009B4448 /* RecipeTableViewCell.swift */,
 				AD57DDAC1CB5BB0700F75893 /* RecipeDetailViewController.swift */,
+				AD0F3A4B1CA1D3F100CDC1E2 /* ShoppingListViewController.swift */,
 				AD0F3A4D1CA1D3F100CDC1E2 /* Main.storyboard */,
 				AD0F3A531CA1D3F100CDC1E2 /* Assets.xcassets */,
 				AD0F3A551CA1D3F100CDC1E2 /* LaunchScreen.storyboard */,
@@ -113,6 +115,7 @@
 				AD6A96D01CA9E3710060BADC /* ShoppingItem.swift */,
 				AD70C1CC1CB41F7C00425A74 /* FoodForkRecipes.swift */,
 				AD57DDA81CB5AFE500F75893 /* Recipe.swift */,
+				ADDB5A9A1CC1741200CBBD09 /* FavoriteRecipes.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD6A96D11CA9E3710060BADC /* ShoppingItem.swift in Sources */,
+				ADDB5A9B1CC1741200CBBD09 /* FavoriteRecipes.swift in Sources */,
 				AD0F3A4C1CA1D3F100CDC1E2 /* ShoppingListViewController.swift in Sources */,
 				AD57DDAD1CB5BB0700F75893 /* RecipeDetailViewController.swift in Sources */,
 				AD061FD11CBFE035009B4448 /* RecipeTableViewCell.swift in Sources */,

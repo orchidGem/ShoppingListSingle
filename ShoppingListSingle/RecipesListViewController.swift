@@ -16,17 +16,9 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var recipesTableView: UITableView!
     
     var recipes = [Recipe]()
-    
-    let favoriteRecipes = [
-        
-        Recipe(title: "Lemon Thyme Sidecar", imageURL: "https://photo2.foodgawker.com/wp-content/uploads/2016/04/2624247.jpg", recipeID: nil, ingredients: ["1 Tbsp lemon juice", "1/4 cupe cognac", "1 Tbsp triple sec", "Sugar", "1 Lemon Wedge", "Simple Syrup"]),
-        
-        Recipe(title: "Salted Toffee Cookie Bars", imageURL: "https://photo2.foodgawker.com/wp-content/uploads/2016/04/2624441.jpg", recipeID: nil, ingredients: ["Butter", "Sugar", "Brown Sugar", "Flour", "Vanilla", "Salt"]),
-        
-        ]
-    
-    
-     
+    var allRecipes = [Recipe]()
+    var favoriteRecipes = [Recipe]()
+
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -36,13 +28,13 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
         
         //recipes = allRecipes
         
-        
         // Fetch Recipes
-        FoodForkRecipes.sharedInstance.getRecentRecipes() { (success, recipesDictionary, errorString) in
+        FoodForkRecipes.sharedInstance.getRecipeList() { (success, recipesDictionary, errorString) in
             
             if success {
                 
-                self.recipes = recipesDictionary
+                self.allRecipes = recipesDictionary
+                self.recipes = self.allRecipes
                 
                 dispatch_async(dispatch_get_main_queue(), {
                     self.recipesTableView.reloadData()
@@ -52,6 +44,10 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
                 print("error with recipe request")
             }
         }
+        
+        // Fetch Favorite Recipes
+        favoriteRecipes = FavoriteRecipes.sharedInstance.favoriteRecipes
+        print(favoriteRecipes)
         
     }
     
@@ -63,22 +59,18 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
     
     // MARK: Actions
     
-    // Toggle Recipes for All and Favorites
-//    @IBAction func toggleRecipes(sender: AnyObject) {
-//        if sender.selectedSegmentIndex == 0 { // ALL
-//            
-//            recipes = allRecipes
-//            
-//            
-//        } else { // Favorites
-//            
-//            recipes = favoriteRecipes
-//            
-//        }
-//        
-//        recipesTableView.reloadData()
-//    }
-//    
+    //Toggle Recipes for All and Favorites
+    @IBAction func toggleRecipes(sender: AnyObject) {
+        if sender.selectedSegmentIndex == 0 { // ALL
+            recipes = allRecipes
+            
+        } else { // Favorites
+            recipes = favoriteRecipes
+        }
+        
+        recipesTableView.reloadData()
+    }
+    
     
     
     // MARK: TableView

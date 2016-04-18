@@ -26,6 +26,7 @@ class ShoppingListViewController: UIViewController, UITextFieldDelegate, UITable
         tableView.delegate = self
         tableView.dataSource = self
         itemTextfield.delegate = self
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -33,6 +34,11 @@ class ShoppingListViewController: UIViewController, UITextFieldDelegate, UITable
     }
     
     // MARK: Actions
+    
+    func loadList(notification: NSNotification){
+        print("reloading list")
+        self.tableView.reloadData()
+    }
     
     // Add New Shopping List Item
     func insertNewObject() {
@@ -118,7 +124,7 @@ class ShoppingListViewController: UIViewController, UITextFieldDelegate, UITable
         keyboardDoneButtonView.sizeToFit()
         
         // Setup the buttons to be put in the system.
-        let doneButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("endEditingNow") )
+        let doneButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ShoppingListViewController.endEditingNow) )
         let toolbarButtons = [doneButtonItem]
         
         //Put the buttons into the ToolBar and display the tool bar
@@ -192,7 +198,6 @@ class ShoppingListViewController: UIViewController, UITextFieldDelegate, UITable
     }
     
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
-        print("configuring the cell")
         let object = self.fetchedResultsController.objectAtIndexPath(indexPath)
         cell.textLabel!.text = object.name
     }

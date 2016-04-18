@@ -26,7 +26,7 @@
                                         <rect key="frame" x="0.0" y="92" width="600" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Zgr-Rb-PKQ" id="pWc-Zg-ozx">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="199.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="lIf-2K-rcX">
@@ -46,8 +46,8 @@
                                                         </mask>
                                                     </variation>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PKX-MD-hPm">
-                                                    <rect key="frame" x="261" y="79" width="78" height="42"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PKX-MD-hPm">
+                                                    <rect key="frame" x="20" y="78" width="560" height="44"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="35"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -133,18 +133,19 @@
                             <constraint firstItem="Hx3-9b-Xr9" firstAttribute="leading" secondItem="B4F-19-daK" secondAttribute="leading" id="yzT-6r-nHO"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="gL3-E3-cZf"/>
                     <navigationItem key="navigationItem" id="dMk-ON-J2T">
                         <nil key="title"/>
                         <barButtonItem key="backBarButtonItem" title="Back to Recipes" id="DAk-TM-zld"/>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="N4C-T0-uvP">
-                            <rect key="frame" x="230.5" y="7.5" width="139" height="29"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="5xi-oL-23X">
+                            <rect key="frame" x="180" y="7" width="240" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="All"/>
                                 <segment title="Favorites"/>
                             </segments>
                             <connections>
-                                <action selector="toggleRecipes:" destination="UyZ-IL-ut9" eventType="valueChanged" id="XCM-eP-e71"/>
+                                <action selector="toggleRecipes:" destination="UyZ-IL-ut9" eventType="valueChanged" id="Ey1-0p-ezR"/>
                             </connections>
                         </segmentedControl>
                     </navigationItem>
@@ -166,8 +167,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="LEl-If-Z8q" kind="relationship" relationship="viewControllers" id="LrO-5M-F2E"/>
-                        <segue destination="J0w-El-YAD" kind="relationship" relationship="viewControllers" id="eV1-xe-gfb"/>
+                        <segue destination="J0w-El-YAD" kind="relationship" relationship="viewControllers" id="uwD-3M-Wdr"/>
+                        <segue destination="LEl-If-Z8q" kind="relationship" relationship="viewControllers" id="6JT-Sn-3Rh"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vbc-VL-g3w" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -216,7 +217,7 @@
                             <constraint firstItem="mZq-iM-nVc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="13" id="q6n-mL-i4I"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Shopping LIst" id="VQ8-Hc-dRH"/>
+                    <tabBarItem key="tabBarItem" title="Shopping List" image="shoppingList" id="VQ8-Hc-dRH"/>
                     <navigationItem key="navigationItem" title="Shopping List" id="6k7-7H-v8M">
                         <rightBarButtonItems>
                             <barButtonItem systemItem="action" id="0vP-mS-9CV">
@@ -263,7 +264,7 @@
         <scene sceneID="QzV-9u-bWv">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LEl-If-Z8q" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Recipes" id="HgP-OR-FwL"/>
+                    <tabBarItem key="tabBarItem" title="Recipes" image="recipes" id="HgP-OR-FwL"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="S2m-Rp-zk6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -307,29 +308,28 @@
                                             </mask>
                                         </variation>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mhu-FH-hOe">
-                                        <rect key="frame" x="214" y="485" width="173" height="38"/>
-                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="394" placeholderIntrinsicHeight="280" translatesAutoresizingMaskIntoConstraints="NO" id="g5v-DV-GIw">
+                                        <rect key="frame" x="0.0" y="81" width="600" height="280"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="173" id="5mb-pV-5sy"/>
-                                            <constraint firstAttribute="height" constant="38" id="P7r-Ht-cw4"/>
+                                            <constraint firstAttribute="width" constant="280" id="IXE-PH-LlS"/>
+                                            <constraint firstAttribute="width" constant="280" id="VCv-k4-7D3"/>
+                                            <constraint firstAttribute="height" constant="280" id="h61-QO-GhB"/>
                                         </constraints>
-                                        <inset key="contentEdgeInsets" minX="15" minY="10" maxX="15" maxY="10"/>
-                                        <state key="normal" title="Add to Shopping List">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="addIngredientsToList:" destination="JCH-hU-H7g" eventType="touchUpInside" id="ZbW-7j-Z3F"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" placeholderIntrinsicWidth="42" placeholderIntrinsicHeight="21" text="Label" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DOM-bE-fkE">
-                                        <rect key="frame" x="20" y="413" width="560" height="21"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="IXE-PH-LlS"/>
+                                                <exclude reference="VCv-k4-7D3"/>
+                                            </mask>
+                                        </variation>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="42" placeholderIntrinsicHeight="21" text="Label" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DOM-bE-fkE">
+                                        <rect key="frame" x="20" y="423" width="560" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Ingredients" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8v3-1Y-1DV">
-                                        <rect key="frame" x="254" y="374" width="92" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredients" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8v3-1Y-1DV">
+                                        <rect key="frame" x="254" y="384" width="92" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="86" id="PM4-7e-jAB"/>
                                             <constraint firstAttribute="height" constant="21" id="mE7-c7-7dt"/>
@@ -343,34 +343,89 @@
                                             </mask>
                                         </variation>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" placeholderIntrinsicWidth="394" placeholderIntrinsicHeight="280" translatesAutoresizingMaskIntoConstraints="NO" id="g5v-DV-GIw">
-                                        <rect key="frame" x="0.0" y="71" width="600" height="280"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="280" id="IXE-PH-LlS"/>
-                                            <constraint firstAttribute="width" constant="280" id="VCv-k4-7D3"/>
-                                            <constraint firstAttribute="height" constant="280" id="h61-QO-GhB"/>
-                                        </constraints>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="IXE-PH-LlS"/>
-                                                <exclude reference="VCv-k4-7D3"/>
-                                            </mask>
-                                        </variation>
-                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="QIG-4f-G3F">
+                                        <rect key="frame" x="54" y="527" width="492" height="38"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mhu-FH-hOe">
+                                                <rect key="frame" x="0.0" y="0.0" width="142" height="38"/>
+                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="173" id="5mb-pV-5sy"/>
+                                                    <constraint firstAttribute="height" constant="38" id="P7r-Ht-cw4"/>
+                                                </constraints>
+                                                <inset key="contentEdgeInsets" minX="15" minY="10" maxX="15" maxY="10"/>
+                                                <state key="normal" title="Add to Favorites">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="5mb-pV-5sy"/>
+                                                        <exclude reference="P7r-Ht-cw4"/>
+                                                    </mask>
+                                                </variation>
+                                                <connections>
+                                                    <action selector="addRecipeToFavorites:" destination="JCH-hU-H7g" eventType="touchUpInside" id="zZ8-Yt-BrF"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ij0-ZA-miy">
+                                                <rect key="frame" x="162" y="0.0" width="173" height="38"/>
+                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="38" id="6PZ-nW-HlL"/>
+                                                    <constraint firstAttribute="width" constant="173" id="STz-jE-m7m"/>
+                                                </constraints>
+                                                <inset key="contentEdgeInsets" minX="15" minY="10" maxX="15" maxY="10"/>
+                                                <state key="normal" title="Add to Shopping List">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="6PZ-nW-HlL"/>
+                                                        <exclude reference="STz-jE-m7m"/>
+                                                    </mask>
+                                                </variation>
+                                                <connections>
+                                                    <action selector="addIngredientsToList:" destination="JCH-hU-H7g" eventType="touchUpInside" id="F5n-KP-KWs"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8lM-iL-Jg5">
+                                                <rect key="frame" x="355" y="0.0" width="137" height="38"/>
+                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="173" id="EX2-6f-byn"/>
+                                                    <constraint firstAttribute="height" constant="38" id="pBi-Wq-kPD"/>
+                                                </constraints>
+                                                <inset key="contentEdgeInsets" minX="15" minY="10" maxX="15" maxY="10"/>
+                                                <state key="normal" title="View Directions">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="EX2-6f-byn"/>
+                                                        <exclude reference="pBi-Wq-kPD"/>
+                                                    </mask>
+                                                </variation>
+                                                <connections>
+                                                    <action selector="viewDirections:" destination="JCH-hU-H7g" eventType="touchUpInside" id="bAx-cQ-ERR"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="Smg-ar-44w" firstAttribute="leading" secondItem="gh5-jX-caP" secondAttribute="leading" constant="20" id="83b-HL-8tl"/>
+                                    <constraint firstItem="QIG-4f-G3F" firstAttribute="centerX" secondItem="gh5-jX-caP" secondAttribute="centerX" id="Bh6-se-G3t"/>
                                     <constraint firstAttribute="trailing" secondItem="Smg-ar-44w" secondAttribute="trailing" constant="20" id="BtB-WI-kvT"/>
                                     <constraint firstItem="DOM-bE-fkE" firstAttribute="top" secondItem="8v3-1Y-1DV" secondAttribute="bottom" constant="18" id="IgP-xp-1sb"/>
                                     <constraint firstAttribute="trailing" secondItem="g5v-DV-GIw" secondAttribute="trailing" id="IpX-iM-s7K"/>
-                                    <constraint firstItem="mhu-FH-hOe" firstAttribute="top" secondItem="DOM-bE-fkE" secondAttribute="bottom" constant="51" id="L0h-Bp-UDU"/>
                                     <constraint firstItem="DOM-bE-fkE" firstAttribute="leading" secondItem="gh5-jX-caP" secondAttribute="leading" constant="279" id="OfB-vL-EHp"/>
                                     <constraint firstItem="g5v-DV-GIw" firstAttribute="top" secondItem="Smg-ar-44w" secondAttribute="bottom" constant="25" id="R3s-Vi-rxp"/>
                                     <constraint firstItem="Smg-ar-44w" firstAttribute="centerX" secondItem="gh5-jX-caP" secondAttribute="centerX" id="T3Y-Rd-IqB"/>
                                     <constraint firstItem="Smg-ar-44w" firstAttribute="centerX" secondItem="g5v-DV-GIw" secondAttribute="centerX" id="UW2-Qq-hff"/>
+                                    <constraint firstItem="QIG-4f-G3F" firstAttribute="top" secondItem="DOM-bE-fkE" secondAttribute="bottom" constant="83" id="ati-ho-6xQ"/>
                                     <constraint firstItem="g5v-DV-GIw" firstAttribute="centerX" secondItem="Smg-ar-44w" secondAttribute="centerX" id="bAD-D5-Ibn"/>
-                                    <constraint firstItem="Smg-ar-44w" firstAttribute="centerX" secondItem="mhu-FH-hOe" secondAttribute="centerX" id="cmU-Og-W3b"/>
                                     <constraint firstItem="g5v-DV-GIw" firstAttribute="leading" secondItem="8v3-1Y-1DV" secondAttribute="leading" constant="-254" id="ctz-00-b6D"/>
+                                    <constraint firstAttribute="bottom" secondItem="QIG-4f-G3F" secondAttribute="bottom" constant="22" id="cyp-Kr-O1L"/>
                                     <constraint firstItem="g5v-DV-GIw" firstAttribute="trailing" secondItem="8v3-1Y-1DV" secondAttribute="trailing" constant="254" id="d9F-nA-B4V"/>
                                     <constraint firstItem="DOM-bE-fkE" firstAttribute="leading" secondItem="gh5-jX-caP" secondAttribute="leading" constant="20" id="eCC-Zz-cpb"/>
                                     <constraint firstItem="Smg-ar-44w" firstAttribute="centerX" secondItem="DOM-bE-fkE" secondAttribute="centerX" id="egV-Xj-PdR"/>
@@ -378,7 +433,6 @@
                                     <constraint firstItem="g5v-DV-GIw" firstAttribute="leading" secondItem="8v3-1Y-1DV" secondAttribute="leading" id="h1A-xn-dGx"/>
                                     <constraint firstItem="g5v-DV-GIw" firstAttribute="leading" secondItem="gh5-jX-caP" secondAttribute="leading" id="mTm-Hh-qTU"/>
                                     <constraint firstItem="DOM-bE-fkE" firstAttribute="leading" secondItem="gh5-jX-caP" secondAttribute="leading" constant="20" id="n7l-cV-9xb"/>
-                                    <constraint firstAttribute="bottom" secondItem="mhu-FH-hOe" secondAttribute="bottom" constant="64" id="nAH-zK-SDF"/>
                                     <constraint firstItem="8v3-1Y-1DV" firstAttribute="top" secondItem="g5v-DV-GIw" secondAttribute="bottom" constant="23" id="sNg-CW-tqg"/>
                                     <constraint firstAttribute="trailing" secondItem="DOM-bE-fkE" secondAttribute="trailing" constant="20" id="uBj-D5-COH"/>
                                     <constraint firstItem="g5v-DV-GIw" firstAttribute="centerX" secondItem="gh5-jX-caP" secondAttribute="centerX" id="xjt-Bb-mrS"/>
@@ -410,7 +464,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="addToListButton" destination="mhu-FH-hOe" id="YMb-CQ-jkE"/>
+                        <outlet property="addToListButton" destination="Ij0-ZA-miy" id="ASA-GK-Up2"/>
                         <outlet property="ingredientsLabel" destination="DOM-bE-fkE" id="F2l-dH-QOO"/>
                         <outlet property="recipeImage" destination="g5v-DV-GIw" id="rIq-2i-cqa"/>
                         <outlet property="recipeTitle" destination="Smg-ar-44w" id="Mvl-lT-5Um"/>
@@ -423,5 +477,7 @@
     </scenes>
     <resources>
         <image name="placeholder" width="960" height="960"/>
+        <image name="recipes" width="24" height="24"/>
+        <image name="shoppingList" width="24" height="24"/>
     </resources>
 </document>

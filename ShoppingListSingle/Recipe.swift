@@ -9,6 +9,7 @@
 struct Recipe {
     var title: String?
     var imageURL: String?
+    var recipeURL: String?
     var recipeID: String?
     var ingredients: [String]?
 }

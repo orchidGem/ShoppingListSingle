@@ -7,15 +7,44 @@
 //
 
 import UIKit
+import Alamofire
 
 class FoodForkRecipes {
     
     static let sharedInstance = FoodForkRecipes()
     
-    func getRecentRecipes(completionHandler: (success: Bool, recipeData: [Recipe], error: String?) -> Void) {
+    func getRecipeList(completionHandler: (success: Bool, recipeData: [Recipe], error: String?) -> Void) {
+        
+        Alamofire.request(.GET, "http://food2fork.com/api/search", parameters: ["key":"46a0a82a9f10b597b08a4b2adb7ca574"])
+            .responseJSON { response in
+                
+                guard let parsedResult = response.result.value else {
+                    print("error parsing data")
+                    return
+                }
+                
+                guard let recipesArray = parsedResult["recipes"] as? NSArray else {
+                    print("cannot find recipes key in \(parsedResult)")
+                    return
+                }
+                
+                var recipesDictionary = [Recipe]()
+                
+                for recipe in recipesArray {
+                    let recipe = Recipe(title: recipe["title"] as? String, imageURL: recipe["image_url"] as? String, recipeURL: recipe["source_url"] as? String, recipeID: recipe["recipe_id"] as? String, ingredients: nil)
+                    
+                    recipesDictionary.append(recipe)
+                }
+                
+                completionHandler(success: true, recipeData: recipesDictionary, error: nil)
+        }
+        
+    }
+    
+    func getRecipeFromId(recipeID: String, completionHandler: (success: Bool, recipeResults: Recipe, error: String?) -> Void) {
         
         let session  = NSURLSession.sharedSession()
-        let url = NSURL(string: "http://food2fork.com/api/search?key=46a0a82a9f10b597b08a4b2adb7ca574")
+        let url = NSURL(string: "http://food2fork.com/api/get?key=46a0a82a9f10b597b08a4b2adb7ca574&rId=\(recipeID)")
         let request = NSURLRequest(URL: url!)
         
         let task = session.dataTaskWithRequest(request) {(data, response, error) in
@@ -54,30 +83,28 @@ class FoodForkRecipes {
                 return
             }
             
-            //print(parsedResult)
-            
-            guard let recipesArray = parsedResult["recipes"] as? NSArray else {
-                print("cannot find recipes key in \(parsedResult)")
+            guard let recipeDictionary = parsedResult["recipe"] as? NSDictionary else {
+                print("cannot find recipe key in \(parsedResult)")
                 return
             }
             
-            var recipesDictionary = [Recipe]()
+            let recipe = Recipe(
+                title: recipeDictionary["title"] as? String,
+                imageURL: recipeDictionary["image_url"] as? String,
+                recipeURL: recipeDictionary["source_url"] as? String,
+                recipeID: recipeDictionary["recipe_id"] as? String,
+                ingredients: nil
+            )
             
-            for recipe in recipesArray {
-                let recipe = Recipe(title: recipe["title"] as! String, imageURL: recipe["image_url"] as! String, recipeID: recipe["recipe_id"] as! String, ingredients: nil)
-                recipesDictionary.append(recipe)
-            }
-            
-            completionHandler(success: true, recipeData: recipesDictionary, error: nil)
+            completionHandler(success: true, recipeResults: recipe, error: nil)
             
         }
         
         task.resume()
         
-    } // End of getRecentRecipes function
+    }
     
-    
-    func getRecipeFromID(recipeID: String, completionHandler: (success: Bool, ingredients: [String], error: String?) -> Void) {
+    func getRecipeIngredients(recipeID: String, completionHandler: (success: Bool, ingredients: [String], error: String?) -> Void) {
         
         let session  = NSURLSession.sharedSession()
         let url = NSURL(string: "http://food2fork.com/api/get?key=46a0a82a9f10b597b08a4b2adb7ca574&rId=\(recipeID)")
