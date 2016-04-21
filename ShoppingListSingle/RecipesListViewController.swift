@@ -17,8 +17,9 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
     
     var recipes = [Recipe]()
     var allRecipes = [Recipe]()
-    var favoriteRecipes = [Recipe]()
-
+    var paginationCount = 1
+    @IBOutlet weak var toggleRecipesButton: UISegmentedControl!
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -29,7 +30,7 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
         //recipes = allRecipes
         
         // Fetch Recipes
-        FoodForkRecipes.sharedInstance.getRecipeList() { (success, recipesDictionary, errorString) in
+        FoodForkRecipes.sharedInstance.getRecipeList(page: paginationCount) { (success, recipesDictionary, errorString) in
             
             if success {
                 
@@ -46,15 +47,22 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
         }
         
         // Fetch Favorite Recipes
-        favoriteRecipes = FavoriteRecipes.sharedInstance.favoriteRecipes
-        print(favoriteRecipes)
-        
+        FavoriteRecipes.sharedInstance.fetchFavoriteRecipes()
     }
     
     override func viewWillAppear(animated: Bool) {
         
         super.viewWillAppear(animated)
         
+        print("view will appear")
+        
+        if toggleRecipesButton.selectedSegmentIndex == 1 {
+            recipes = FavoriteRecipes.sharedInstance.favoriteRecipes
+            print("favorites is selected on view will appear. Number of favorites is: ")
+            print(FavoriteRecipes.sharedInstance.favoriteRecipes.count)
+            recipesTableView.reloadData()
+            
+        }
     }
     
     // MARK: Actions
@@ -65,7 +73,9 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
             recipes = allRecipes
             
         } else { // Favorites
-            recipes = favoriteRecipes
+            recipes = FavoriteRecipes.sharedInstance.favoriteRecipes
+            print("Toggled to Favorites. Number of recipes is: ")
+            print(FavoriteRecipes.sharedInstance.favoriteRecipes.count)
         }
         
         recipesTableView.reloadData()
@@ -98,6 +108,39 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
         }
         
         return cell
+    }
+    
+    // Load More Recipes if on the last cell
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,     forRowAtIndexPath indexPath: NSIndexPath) {
+        if (indexPath.row + 1) == recipes.count {
+            
+            // If show ALL recipes, load more recipes
+            if toggleRecipesButton.selectedSegmentIndex == 0 {
+                
+                paginationCount+=1
+                
+                // Load more recipes
+                FoodForkRecipes.sharedInstance.getRecipeList(page: paginationCount) { (success, recipesArray, errorString) in
+                    
+                    if success {
+                        
+                        for recipe in recipesArray {
+                            self.allRecipes.append(recipe)
+                        }
+                        
+                        self.recipes = self.allRecipes
+                        
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.recipesTableView.reloadData()
+                        })
+                        
+                    } else {
+                        print("error with recipe request")
+                    }
+                }
+            }
+        }
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

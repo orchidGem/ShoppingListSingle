@@ -18,24 +18,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="200" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Hx3-9b-Xr9">
-                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="110" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Hx3-9b-Xr9">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RecipeCell" rowHeight="200" id="Zgr-Rb-PKQ" customClass="RecipeTableViewCell" customModule="ShoppingListSingle" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="600" height="200"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RecipeCell" rowHeight="110" id="Zgr-Rb-PKQ" customClass="RecipeTableViewCell" customModule="ShoppingListSingle" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Zgr-Rb-PKQ" id="pWc-Zg-ozx">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="199.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="109.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="lIf-2K-rcX">
-                                                    <rect key="frame" x="5" y="5" width="590" height="190"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PKX-MD-hPm">
+                                                    <rect key="frame" x="20" y="43" width="455" height="24"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="20"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <size key="shadowOffset" width="2" height="2"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="150" placeholderIntrinsicHeight="150" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="lIf-2K-rcX">
+                                                    <rect key="frame" x="495" y="5" width="100" height="100"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="90" id="Obs-06-RiH"/>
                                                         <constraint firstAttribute="height" constant="90" id="PjX-cC-BNl"/>
                                                         <constraint firstAttribute="height" constant="90" id="aFf-44-wpG"/>
                                                         <constraint firstAttribute="width" constant="90" id="iaW-2L-b1m"/>
+                                                        <constraint firstAttribute="width" constant="100" id="nHK-2I-L94"/>
+                                                        <constraint firstAttribute="height" constant="100" id="qJY-j4-nPv"/>
                                                     </constraints>
                                                     <variation key="default">
                                                         <mask key="constraints">
@@ -46,17 +54,10 @@
                                                         </mask>
                                                     </variation>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PKX-MD-hPm">
-                                                    <rect key="frame" x="20" y="78" width="560" height="44"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="35"/>
-                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.54773382092198586" colorSpace="calibratedRGB"/>
-                                                    <size key="shadowOffset" width="2" height="2"/>
-                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="PKX-MD-hPm" firstAttribute="centerX" secondItem="lIf-2K-rcX" secondAttribute="centerX" id="06X-n7-hSL"/>
+                                                <constraint firstItem="lIf-2K-rcX" firstAttribute="centerY" secondItem="pWc-Zg-ozx" secondAttribute="centerY" id="2kJ-rG-VxT"/>
                                                 <constraint firstAttribute="bottom" secondItem="lIf-2K-rcX" secondAttribute="bottom" constant="5" id="3kM-MP-hfy"/>
                                                 <constraint firstAttribute="bottom" secondItem="lIf-2K-rcX" secondAttribute="bottom" constant="4.5" id="4a3-Ra-6Le"/>
                                                 <constraint firstItem="PKX-MD-hPm" firstAttribute="leading" secondItem="pWc-Zg-ozx" secondAttribute="leading" constant="20" id="7OW-KP-Rnv"/>
@@ -65,13 +66,17 @@
                                                 <constraint firstAttribute="trailing" secondItem="lIf-2K-rcX" secondAttribute="trailing" constant="5" id="9vO-VJ-umA"/>
                                                 <constraint firstItem="lIf-2K-rcX" firstAttribute="leading" secondItem="pWc-Zg-ozx" secondAttribute="leading" constant="8" id="9xK-lb-nBX"/>
                                                 <constraint firstItem="PKX-MD-hPm" firstAttribute="centerX" secondItem="pWc-Zg-ozx" secondAttribute="centerX" id="ALg-xd-6sg"/>
+                                                <constraint firstItem="PKX-MD-hPm" firstAttribute="leading" secondItem="pWc-Zg-ozx" secondAttribute="leading" constant="20" id="GcL-TD-7dx"/>
                                                 <constraint firstItem="PKX-MD-hPm" firstAttribute="centerY" secondItem="lIf-2K-rcX" secondAttribute="centerY" id="Gfb-CT-bcg"/>
                                                 <constraint firstItem="PKX-MD-hPm" firstAttribute="leading" secondItem="pWc-Zg-ozx" secondAttribute="leading" constant="20" id="GgB-ie-Qbn"/>
                                                 <constraint firstItem="lIf-2K-rcX" firstAttribute="leading" secondItem="pWc-Zg-ozx" secondAttribute="leading" constant="8" id="JDf-H6-l1e"/>
                                                 <constraint firstItem="PKX-MD-hPm" firstAttribute="leading" secondItem="lIf-2K-rcX" secondAttribute="trailing" constant="14" id="Mco-BZ-KsE"/>
+                                                <constraint firstItem="PKX-MD-hPm" firstAttribute="centerY" secondItem="pWc-Zg-ozx" secondAttribute="centerY" id="Nz7-o8-NK7"/>
                                                 <constraint firstItem="PKX-MD-hPm" firstAttribute="leading" secondItem="lIf-2K-rcX" secondAttribute="trailing" constant="14" id="RlE-jW-pud"/>
+                                                <constraint firstItem="lIf-2K-rcX" firstAttribute="leading" secondItem="PKX-MD-hPm" secondAttribute="trailing" constant="20" id="SFE-ki-Pvm"/>
                                                 <constraint firstItem="lIf-2K-rcX" firstAttribute="top" secondItem="pWc-Zg-ozx" secondAttribute="top" constant="5" id="UCL-cy-CcE"/>
                                                 <constraint firstAttribute="trailing" secondItem="PKX-MD-hPm" secondAttribute="trailing" constant="20" id="X7V-Lq-IkS"/>
+                                                <constraint firstAttribute="trailing" secondItem="lIf-2K-rcX" secondAttribute="trailing" constant="5" id="aQx-XL-Hxz"/>
                                                 <constraint firstItem="lIf-2K-rcX" firstAttribute="leading" secondItem="pWc-Zg-ozx" secondAttribute="leading" constant="8" id="bcZ-8W-hZu"/>
                                                 <constraint firstItem="PKX-MD-hPm" firstAttribute="centerX" secondItem="pWc-Zg-ozx" secondAttribute="centerX" id="cfN-Kd-28K"/>
                                                 <constraint firstItem="PKX-MD-hPm" firstAttribute="centerX" secondItem="pWc-Zg-ozx" secondAttribute="centerX" id="gea-AE-Y0B"/>
@@ -90,29 +95,37 @@
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
-                                                    <exclude reference="4a3-Ra-6Le"/>
-                                                    <exclude reference="90V-vp-do9"/>
-                                                    <exclude reference="9xK-lb-nBX"/>
-                                                    <exclude reference="JDf-H6-l1e"/>
-                                                    <exclude reference="UCL-cy-CcE"/>
-                                                    <exclude reference="bcZ-8W-hZu"/>
-                                                    <exclude reference="keu-VM-2qn"/>
-                                                    <exclude reference="vYz-Q4-NV8"/>
-                                                    <exclude reference="zs3-ca-0RD"/>
                                                     <exclude reference="06X-n7-hSL"/>
+                                                    <exclude reference="7OW-KP-Rnv"/>
                                                     <exclude reference="8aI-mx-mtk"/>
                                                     <exclude reference="ALg-xd-6sg"/>
                                                     <exclude reference="Gfb-CT-bcg"/>
                                                     <exclude reference="GgB-ie-Qbn"/>
                                                     <exclude reference="Mco-BZ-KsE"/>
                                                     <exclude reference="RlE-jW-pud"/>
+                                                    <exclude reference="X7V-Lq-IkS"/>
+                                                    <exclude reference="cfN-Kd-28K"/>
                                                     <exclude reference="gea-AE-Y0B"/>
+                                                    <exclude reference="jv6-sW-Crb"/>
                                                     <exclude reference="r9W-GG-Hso"/>
                                                     <exclude reference="tQg-WU-ral"/>
                                                     <exclude reference="taB-UM-kH4"/>
                                                     <exclude reference="w3n-OA-Ot1"/>
                                                     <exclude reference="yzA-w8-OKd"/>
                                                     <exclude reference="zVF-dz-1rg"/>
+                                                    <exclude reference="3kM-MP-hfy"/>
+                                                    <exclude reference="4a3-Ra-6Le"/>
+                                                    <exclude reference="90V-vp-do9"/>
+                                                    <exclude reference="9vO-VJ-umA"/>
+                                                    <exclude reference="9xK-lb-nBX"/>
+                                                    <exclude reference="JDf-H6-l1e"/>
+                                                    <exclude reference="UCL-cy-CcE"/>
+                                                    <exclude reference="bcZ-8W-hZu"/>
+                                                    <exclude reference="jEq-TK-gVL"/>
+                                                    <exclude reference="keu-VM-2qn"/>
+                                                    <exclude reference="nCc-pN-xYG"/>
+                                                    <exclude reference="vYz-Q4-NV8"/>
+                                                    <exclude reference="zs3-ca-0RD"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -128,7 +141,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Hx3-9b-Xr9" secondAttribute="bottom" constant="44" id="FUj-gr-wDP"/>
-                            <constraint firstItem="Hx3-9b-Xr9" firstAttribute="top" secondItem="0An-yn-Mhp" secondAttribute="bottom" id="YR2-du-iV0"/>
+                            <constraint firstItem="Hx3-9b-Xr9" firstAttribute="top" secondItem="0An-yn-Mhp" secondAttribute="bottom" constant="-64" id="YR2-du-iV0"/>
                             <constraint firstAttribute="trailing" secondItem="Hx3-9b-Xr9" secondAttribute="trailing" id="jqT-Fj-hLN"/>
                             <constraint firstItem="Hx3-9b-Xr9" firstAttribute="leading" secondItem="B4F-19-daK" secondAttribute="leading" id="yzT-6r-nHO"/>
                         </constraints>
@@ -151,6 +164,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="recipesTableView" destination="Hx3-9b-Xr9" id="zix-ND-aTq"/>
+                        <outlet property="toggleRecipesButton" destination="5xi-oL-23X" id="PQv-tT-nnw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xDT-To-DOe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -167,8 +181,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="J0w-El-YAD" kind="relationship" relationship="viewControllers" id="uwD-3M-Wdr"/>
                         <segue destination="LEl-If-Z8q" kind="relationship" relationship="viewControllers" id="6JT-Sn-3Rh"/>
+                        <segue destination="J0w-El-YAD" kind="relationship" relationship="viewControllers" id="uwD-3M-Wdr"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vbc-VL-g3w" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -322,7 +336,7 @@
                                             </mask>
                                         </variation>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="42" placeholderIntrinsicHeight="21" text="Label" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DOM-bE-fkE">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="42" placeholderIntrinsicHeight="21" text="Label" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="100" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DOM-bE-fkE">
                                         <rect key="frame" x="20" y="423" width="560" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -344,31 +358,10 @@
                                         </variation>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="QIG-4f-G3F">
-                                        <rect key="frame" x="54" y="527" width="492" height="38"/>
+                                        <rect key="frame" x="135" y="527" width="330" height="38"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mhu-FH-hOe">
-                                                <rect key="frame" x="0.0" y="0.0" width="142" height="38"/>
-                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="173" id="5mb-pV-5sy"/>
-                                                    <constraint firstAttribute="height" constant="38" id="P7r-Ht-cw4"/>
-                                                </constraints>
-                                                <inset key="contentEdgeInsets" minX="15" minY="10" maxX="15" maxY="10"/>
-                                                <state key="normal" title="Add to Favorites">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <variation key="default">
-                                                    <mask key="constraints">
-                                                        <exclude reference="5mb-pV-5sy"/>
-                                                        <exclude reference="P7r-Ht-cw4"/>
-                                                    </mask>
-                                                </variation>
-                                                <connections>
-                                                    <action selector="addRecipeToFavorites:" destination="JCH-hU-H7g" eventType="touchUpInside" id="zZ8-Yt-BrF"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ij0-ZA-miy">
-                                                <rect key="frame" x="162" y="0.0" width="173" height="38"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="173" height="38"/>
                                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="38" id="6PZ-nW-HlL"/>
@@ -389,7 +382,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8lM-iL-Jg5">
-                                                <rect key="frame" x="355" y="0.0" width="137" height="38"/>
+                                                <rect key="frame" x="193" y="0.0" width="137" height="38"/>
                                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="173" id="EX2-6f-byn"/>
@@ -463,8 +456,17 @@
                             <constraint firstItem="gh5-jX-caP" firstAttribute="top" secondItem="Qxh-Hu-bTZ" secondAttribute="topMargin" constant="13" id="geQ-bb-EOC"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="AuB-Fc-KdY">
+                        <barButtonItem key="rightBarButtonItem" image="favorite" id="cNU-zK-F0V" userLabel="FavoriteButton">
+                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="addRecipeToFavorites:" destination="JCH-hU-H7g" id="YTq-0w-pl6"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="addToListButton" destination="Ij0-ZA-miy" id="ASA-GK-Up2"/>
+                        <outlet property="favoriteButton" destination="cNU-zK-F0V" id="MLI-mg-EaB"/>
                         <outlet property="ingredientsLabel" destination="DOM-bE-fkE" id="F2l-dH-QOO"/>
                         <outlet property="recipeImage" destination="g5v-DV-GIw" id="rIq-2i-cqa"/>
                         <outlet property="recipeTitle" destination="Smg-ar-44w" id="Mvl-lT-5Um"/>
@@ -476,6 +478,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="favorite" width="24" height="24"/>
         <image name="placeholder" width="960" height="960"/>
         <image name="recipes" width="24" height="24"/>
         <image name="shoppingList" width="24" height="24"/>

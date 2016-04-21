@@ -12,4 +12,5 @@ struct Recipe {
     var recipeURL: String?
     var recipeID: String?
     var ingredients: [String]?
+    var favorite: Bool
 }

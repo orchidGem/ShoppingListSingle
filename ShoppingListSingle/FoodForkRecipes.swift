@@ -13,10 +13,12 @@ class FoodForkRecipes {
     
     static let sharedInstance = FoodForkRecipes()
     
-    func getRecipeList(completionHandler: (success: Bool, recipeData: [Recipe], error: String?) -> Void) {
+    func getRecipeList(page page: Int, completionHandler: (success: Bool, recipeData: [Recipe], error: String?) -> Void) {
         
-        Alamofire.request(.GET, "http://food2fork.com/api/search", parameters: ["key":"46a0a82a9f10b597b08a4b2adb7ca574"])
+        Alamofire.request(.GET, "http://food2fork.com/api/search", parameters: ["key":"46a0a82a9f10b597b08a4b2adb7ca574", "page":page])
             .responseJSON { response in
+                
+                print(response.request)
                 
                 guard let parsedResult = response.result.value else {
                     print("error parsing data")
@@ -31,7 +33,13 @@ class FoodForkRecipes {
                 var recipesDictionary = [Recipe]()
                 
                 for recipe in recipesArray {
-                    let recipe = Recipe(title: recipe["title"] as? String, imageURL: recipe["image_url"] as? String, recipeURL: recipe["source_url"] as? String, recipeID: recipe["recipe_id"] as? String, ingredients: nil)
+                    let recipe = Recipe(
+                        title: recipe["title"] as? String,
+                        imageURL: recipe["image_url"] as? String,
+                        recipeURL: recipe["source_url"] as? String,
+                        recipeID: recipe["recipe_id"] as? String,
+                        ingredients: nil, favorite: false
+                    )
                     
                     recipesDictionary.append(recipe)
                 }
@@ -93,7 +101,8 @@ class FoodForkRecipes {
                 imageURL: recipeDictionary["image_url"] as? String,
                 recipeURL: recipeDictionary["source_url"] as? String,
                 recipeID: recipeDictionary["recipe_id"] as? String,
-                ingredients: nil
+                ingredients: nil,
+                favorite: false
             )
             
             completionHandler(success: true, recipeResults: recipe, error: nil)

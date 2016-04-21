@@ -15,6 +15,7 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
     @IBOutlet weak var recipeTitle: UILabel!
     @IBOutlet weak var ingredientsLabel: UILabel!
     @IBOutlet weak var addToListButton: UIButton!
+    @IBOutlet weak var favoriteButton: UIBarButtonItem!
     
     var recipe: Recipe!
     
@@ -44,15 +45,43 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
         
         let imageURL = NSURL(string: recipe.imageURL!)
         recipeImage.image = UIImage( data: NSData(contentsOfURL: imageURL!)! )
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        
+        print(FavoriteRecipes.sharedInstance.favoriteRecipeIds)
+                
+        // Check if recipe is a favorite recipe
+        if FavoriteRecipes.sharedInstance.favoriteRecipeIds!.contains(recipe.recipeID!) {
+            print("favorite")
+            favoriteButton.tintColor = UIColor.orangeColor()
+            recipe.favorite = true
+        } else {
+            print("not a favorite")
+        }
+        
     }
     
     // MARK: Actions
     
     @IBAction func addRecipeToFavorites(sender: AnyObject) {
         
-        print("adding recipe to favorites")
-        FavoriteRecipes.sharedInstance.saveFavoriteRecipes(recipe.recipeID!)
-        
+        // If aleady favorited, remove, otherwise, add
+        if recipe.favorite {
+            print("remove from favorites")
+            FavoriteRecipes.sharedInstance.removeFromFavorites(recipe)
+            recipe.favorite = false
+            favoriteButton.tintColor = UIColor.darkGrayColor()
+        } else {
+            print("adding recipe to favorites")
+            FavoriteRecipes.sharedInstance.addToFavorites(recipe)
+            favoriteButton.tintColor = UIColor.orangeColor()
+            recipe.favorite = true
+        }
+        print(FavoriteRecipes.sharedInstance.favoriteRecipeIds)
+  
     }
     
     @IBAction func addIngredientsToList(sender: AnyObject) {
