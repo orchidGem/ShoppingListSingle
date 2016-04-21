@@ -137,12 +137,17 @@
                                 </prototypes>
                                 <sections/>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="gNV-9b-dPd">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Hx3-9b-Xr9" secondAttribute="bottom" constant="44" id="FUj-gr-wDP"/>
                             <constraint firstItem="Hx3-9b-Xr9" firstAttribute="top" secondItem="0An-yn-Mhp" secondAttribute="bottom" constant="-64" id="YR2-du-iV0"/>
                             <constraint firstAttribute="trailing" secondItem="Hx3-9b-Xr9" secondAttribute="trailing" id="jqT-Fj-hLN"/>
+                            <constraint firstItem="gNV-9b-dPd" firstAttribute="centerX" secondItem="B4F-19-daK" secondAttribute="centerX" id="nhO-jC-0cB"/>
+                            <constraint firstItem="gNV-9b-dPd" firstAttribute="centerY" secondItem="B4F-19-daK" secondAttribute="centerY" id="oI7-YN-LBc"/>
                             <constraint firstItem="Hx3-9b-Xr9" firstAttribute="leading" secondItem="B4F-19-daK" secondAttribute="leading" id="yzT-6r-nHO"/>
                         </constraints>
                     </view>
@@ -163,6 +168,7 @@
                         </segmentedControl>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityMonitor" destination="gNV-9b-dPd" id="uh8-bd-moA"/>
                         <outlet property="recipesTableView" destination="Hx3-9b-Xr9" id="zix-ND-aTq"/>
                         <outlet property="toggleRecipesButton" destination="5xi-oL-23X" id="PQv-tT-nnw"/>
                     </connections>

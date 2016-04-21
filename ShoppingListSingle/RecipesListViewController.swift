@@ -19,6 +19,7 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
     var allRecipes = [Recipe]()
     var paginationCount = 1
     @IBOutlet weak var toggleRecipesButton: UISegmentedControl!
+    @IBOutlet weak var activityMonitor: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         
@@ -39,6 +40,7 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
                 
                 dispatch_async(dispatch_get_main_queue(), {
                     self.recipesTableView.reloadData()
+                    self.activityMonitor.stopAnimating()
                 })
                 
             } else {
