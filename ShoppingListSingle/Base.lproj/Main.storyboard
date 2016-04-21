@@ -410,6 +410,9 @@
                                             </button>
                                         </subviews>
                                     </stackView>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="TUW-pG-iF8">
+                                        <rect key="frame" x="290" y="424" width="20" height="20"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="Smg-ar-44w" firstAttribute="leading" secondItem="gh5-jX-caP" secondAttribute="leading" constant="20" id="83b-HL-8tl"/>
@@ -421,6 +424,7 @@
                                     <constraint firstItem="g5v-DV-GIw" firstAttribute="top" secondItem="Smg-ar-44w" secondAttribute="bottom" constant="25" id="R3s-Vi-rxp"/>
                                     <constraint firstItem="Smg-ar-44w" firstAttribute="centerX" secondItem="gh5-jX-caP" secondAttribute="centerX" id="T3Y-Rd-IqB"/>
                                     <constraint firstItem="Smg-ar-44w" firstAttribute="centerX" secondItem="g5v-DV-GIw" secondAttribute="centerX" id="UW2-Qq-hff"/>
+                                    <constraint firstItem="TUW-pG-iF8" firstAttribute="top" secondItem="8v3-1Y-1DV" secondAttribute="bottom" constant="19" id="Ugc-VC-h3G"/>
                                     <constraint firstItem="QIG-4f-G3F" firstAttribute="top" secondItem="DOM-bE-fkE" secondAttribute="bottom" constant="83" id="ati-ho-6xQ"/>
                                     <constraint firstItem="g5v-DV-GIw" firstAttribute="centerX" secondItem="Smg-ar-44w" secondAttribute="centerX" id="bAD-D5-Ibn"/>
                                     <constraint firstItem="g5v-DV-GIw" firstAttribute="leading" secondItem="8v3-1Y-1DV" secondAttribute="leading" constant="-254" id="ctz-00-b6D"/>
@@ -428,6 +432,7 @@
                                     <constraint firstItem="g5v-DV-GIw" firstAttribute="trailing" secondItem="8v3-1Y-1DV" secondAttribute="trailing" constant="254" id="d9F-nA-B4V"/>
                                     <constraint firstItem="DOM-bE-fkE" firstAttribute="leading" secondItem="gh5-jX-caP" secondAttribute="leading" constant="20" id="eCC-Zz-cpb"/>
                                     <constraint firstItem="Smg-ar-44w" firstAttribute="centerX" secondItem="DOM-bE-fkE" secondAttribute="centerX" id="egV-Xj-PdR"/>
+                                    <constraint firstItem="TUW-pG-iF8" firstAttribute="centerX" secondItem="gh5-jX-caP" secondAttribute="centerX" id="gIA-Jp-c5i"/>
                                     <constraint firstItem="Smg-ar-44w" firstAttribute="top" secondItem="gh5-jX-caP" secondAttribute="top" constant="20" id="gNf-RE-8yV"/>
                                     <constraint firstItem="g5v-DV-GIw" firstAttribute="leading" secondItem="8v3-1Y-1DV" secondAttribute="leading" id="h1A-xn-dGx"/>
                                     <constraint firstItem="g5v-DV-GIw" firstAttribute="leading" secondItem="gh5-jX-caP" secondAttribute="leading" id="mTm-Hh-qTU"/>
@@ -471,6 +476,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityMonitor" destination="TUW-pG-iF8" id="nno-g5-Qrs"/>
                         <outlet property="addToListButton" destination="Ij0-ZA-miy" id="ASA-GK-Up2"/>
                         <outlet property="favoriteButton" destination="cNU-zK-F0V" id="MLI-mg-EaB"/>
                         <outlet property="ingredientsLabel" destination="DOM-bE-fkE" id="F2l-dH-QOO"/>

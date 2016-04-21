@@ -10,6 +10,7 @@ import CoreData
 
 class ShoppingItem: NSManagedObject {
     @NSManaged var name: String
+    @NSManaged var id: Int
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)

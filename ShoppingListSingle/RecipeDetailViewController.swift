@@ -16,6 +16,8 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
     @IBOutlet weak var ingredientsLabel: UILabel!
     @IBOutlet weak var addToListButton: UIButton!
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
+    @IBOutlet weak var activityMonitor: UIActivityIndicatorView!
+    
     
     var recipe: Recipe!
     
@@ -35,6 +37,8 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
             if success {
                 self.recipe.ingredients = ingredients
                 self.ingredientsLabel.text = self.recipe.ingredients!.joinWithSeparator("\n")
+                self.activityMonitor.stopAnimating()
+                self.activityMonitor.hidden = true
             } else {
                 self.ingredientsLabel.text = "Unable to load ingredients"
             }
