@@ -10,7 +10,7 @@ import CoreData
 
 class ShoppingItem: NSManagedObject {
     @NSManaged var name: String
-    @NSManaged var id: Int
+    @NSManaged var dateModified: NSDate
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
@@ -21,5 +21,6 @@ class ShoppingItem: NSManagedObject {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
         
         self.name = name
+        self.dateModified = NSDate()
     }
 }

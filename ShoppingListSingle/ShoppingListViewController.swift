@@ -212,7 +212,9 @@ class ShoppingListViewController: UIViewController, UITextFieldDelegate, UITable
         let fetchRequest = NSFetchRequest(entityName: "ShoppingItem")
         // Edit the entity name as appropriate.
         
-        fetchRequest.sortDescriptors = []
+        let sortDescriptor = NSSortDescriptor(key: "dateModified", ascending: true)
+        
+        fetchRequest.sortDescriptors = [sortDescriptor]
         
         // Edit the section name key path and cache name if appropriate.
         // nil for section name key path means "no sections".
