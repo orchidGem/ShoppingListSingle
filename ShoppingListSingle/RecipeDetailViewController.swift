@@ -145,12 +145,7 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
     // Add New Shopping List Item
     func insertNewObject(ingredient: String) {
         let context = self.fetchedResultsController.managedObjectContext
-        let entity = self.fetchedResultsController.fetchRequest.entity!
-        let newManagedObject = NSEntityDescription.insertNewObjectForEntityForName(entity.name!, inManagedObjectContext: context)
-        
-        // If appropriate, configure the new managed object.
-        // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-        newManagedObject.setValue(ingredient, forKey: "name")
+        _ = ShoppingItem(name: ingredient, context: context)
         
         // Save the context.
         do {

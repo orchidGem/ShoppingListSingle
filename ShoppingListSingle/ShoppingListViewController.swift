@@ -43,12 +43,7 @@ class ShoppingListViewController: UIViewController, UITextFieldDelegate, UITable
     // Add New Shopping List Item
     func insertNewObject() {
         let context = self.fetchedResultsController.managedObjectContext
-        let entity = self.fetchedResultsController.fetchRequest.entity!
-        let newManagedObject = NSEntityDescription.insertNewObjectForEntityForName(entity.name!, inManagedObjectContext: context)
-        
-        // If appropriate, configure the new managed object.
-        // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-        newManagedObject.setValue(itemTextfield.text!, forKey: "name")
+        _ = ShoppingItem(name: itemTextfield.text!, context: context)
         
         // Save the context.
         do {
@@ -212,7 +207,7 @@ class ShoppingListViewController: UIViewController, UITextFieldDelegate, UITable
         let fetchRequest = NSFetchRequest(entityName: "ShoppingItem")
         // Edit the entity name as appropriate.
         
-        let sortDescriptor = NSSortDescriptor(key: "dateModified", ascending: true)
+        let sortDescriptor = NSSortDescriptor(key: "dateModified", ascending: false)
         
         fetchRequest.sortDescriptors = [sortDescriptor]
         
