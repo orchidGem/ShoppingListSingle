@@ -16,7 +16,6 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var recipesTableView: UITableView!
     
     var recipes = [Recipe]()
-    var allRecipes = [Recipe]()
     var paginationCount = 1
     @IBOutlet weak var toggleRecipesButton: UISegmentedControl!
     @IBOutlet weak var activityMonitor: UIActivityIndicatorView!
@@ -28,17 +27,11 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
         recipesTableView.delegate = self
         recipesTableView.dataSource = self
         
-        //recipes = allRecipes
-        
         // Fetch Recipes
-        FoodForkRecipes.sharedInstance.getRecipeList(page: paginationCount) { (success, recipesDictionary, errorString) in
-            
+        FoodForkRecipes.sharedInstance.getRecipeList(page: paginationCount) { (success,  errorString) in
             if success {
-                
-                self.allRecipes = recipesDictionary
-                self.recipes = self.allRecipes
-                
                 dispatch_async(dispatch_get_main_queue(), {
+                    self.recipes = Recipe.allRecipes
                     self.recipesTableView.reloadData()
                     self.activityMonitor.stopAnimating()
                 })
@@ -72,8 +65,7 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
     //Toggle Recipes for All and Favorites
     @IBAction func toggleRecipes(sender: AnyObject) {
         if sender.selectedSegmentIndex == 0 { // ALL
-            recipes = allRecipes
-            
+            recipes = Recipe.allRecipes
         } else { // Favorites
             recipes = FavoriteRecipes.sharedInstance.favoriteRecipes
             print("Toggled to Favorites. Number of recipes is: ")
@@ -82,7 +74,6 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
         
         recipesTableView.reloadData()
     }
-    
     
     
     // MARK: TableView
@@ -114,26 +105,24 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
     
     // Load More Recipes if on the last cell
     
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,     forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         if (indexPath.row + 1) == recipes.count {
             
             // If show ALL recipes, load more recipes
             if toggleRecipesButton.selectedSegmentIndex == 0 {
                 
+                print("last cell")
+                
                 paginationCount+=1
                 
                 // Load more recipes
-                FoodForkRecipes.sharedInstance.getRecipeList(page: paginationCount) { (success, recipesArray, errorString) in
+                FoodForkRecipes.sharedInstance.getRecipeList(page: paginationCount) { (success,  errorString) in
                     
                     if success {
                         
-                        for recipe in recipesArray {
-                            self.allRecipes.append(recipe)
-                        }
-                        
-                        self.recipes = self.allRecipes
-                        
                         dispatch_async(dispatch_get_main_queue(), {
+                            print("new recipes fetched")
+                            self.recipes = Recipe.allRecipes
                             self.recipesTableView.reloadData()
                         })
                         
@@ -152,6 +141,7 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
         let recipeDetailViewController = storyboard?.instantiateViewControllerWithIdentifier("RecipeDetailViewController") as! RecipeDetailViewController
  
         recipeDetailViewController.recipe = recipe
+        recipeDetailViewController.recipeIndex = indexPath.row
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         

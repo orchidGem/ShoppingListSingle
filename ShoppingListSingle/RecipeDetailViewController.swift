@@ -20,6 +20,7 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
     
     
     var recipe: Recipe!
+    var recipeIndex: Int!
     
     // Managed Object for Shopping Items
     lazy var managedObjectContext: NSManagedObjectContext = {
@@ -32,24 +33,37 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
         
         self.ingredientsLabel.text = ""
         
-        // Get recipe ingredients
-        FoodForkRecipes.sharedInstance.getRecipeIngredients(recipe.recipeID!) { (success, ingredients, error) in
-            if success {
-                self.recipe.ingredients = ingredients
-                self.ingredientsLabel.text = self.recipe.ingredients!.joinWithSeparator("\n")
-                self.activityMonitor.stopAnimating()
-                self.activityMonitor.hidden = true
-            } else {
-                self.ingredientsLabel.text = "Unable to load ingredients"
-            }
-        }
+        let recipe = Recipe.allRecipes[recipeIndex]
         
         recipeTitle.text = recipe.title
-        
-        
         let imageURL = NSURL(string: recipe.imageURL!)
         recipeImage.image = UIImage( data: NSData(contentsOfURL: imageURL!)! )
         
+        // Get recipe ingredients
+        if let _ = recipe.ingredients {
+            print("ingredients already listed")
+            self.ingredientsLabel.text = recipe.ingredients!.joinWithSeparator("\n")
+            self.activityMonitor.stopAnimating()
+            self.activityMonitor.hidden = true
+        } else {
+            print("fetching ingredients")
+            FoodForkRecipes.sharedInstance.getRecipeIngredients(recipe.recipeID!) { (success, ingredients, error) in
+                if success {
+                    Recipe.allRecipes[self.recipeIndex].ingredients = ingredients
+                    self.recipe.ingredients = ingredients
+                    
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.ingredientsLabel.text = self.recipe.ingredients!.joinWithSeparator("\n")
+                        self.activityMonitor.stopAnimating()
+                        self.activityMonitor.hidden = true
+                    })
+                    
+                    
+                } else {
+                    self.ingredientsLabel.text = "Unable to load ingredients"
+                }
+            }
+        }
     }
     
     override func viewWillAppear(animated: Bool) {

@@ -13,10 +13,12 @@ class FoodForkRecipes {
     
     static let sharedInstance = FoodForkRecipes()
     
-    func getRecipeList(page page: Int, completionHandler: (success: Bool, recipeData: [Recipe], error: String?) -> Void) {
+    func getRecipeList(page page: Int, completionHandler: (success: Bool, error: String?) -> Void) {
         
         Alamofire.request(.GET, "http://food2fork.com/api/search", parameters: ["key":"46a0a82a9f10b597b08a4b2adb7ca574", "page":page])
             .responseJSON { response in
+                
+                print(response.request)
                 
                 guard let parsedResult = response.result.value else {
                     print("error parsing data")
@@ -28,8 +30,6 @@ class FoodForkRecipes {
                     return
                 }
                 
-                var recipesDictionary = [Recipe]()
-                
                 for recipe in recipesArray {
                     let recipe = Recipe(
                         title: recipe["title"] as? String,
@@ -39,10 +39,10 @@ class FoodForkRecipes {
                         ingredients: nil, favorite: false
                     )
                     
-                    recipesDictionary.append(recipe)
+                    Recipe.allRecipes.append(recipe)
                 }
                 
-                completionHandler(success: true, recipeData: recipesDictionary, error: nil)
+                completionHandler(success: true, error: nil)
         }
         
     }
