@@ -18,8 +18,6 @@ class FoodForkRecipes {
         Alamofire.request(.GET, "http://food2fork.com/api/search", parameters: ["key":"46a0a82a9f10b597b08a4b2adb7ca574", "page":page])
             .responseJSON { response in
                 
-                print(response.request)
-                
                 guard let parsedResult = response.result.value else {
                     print("error parsing data")
                     return

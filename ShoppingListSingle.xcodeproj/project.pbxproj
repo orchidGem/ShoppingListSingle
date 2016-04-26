@@ -95,16 +95,11 @@
 			isa = PBXGroup;
 			children = (
 				AD6A96CF1CA9E3630060BADC /* Model */,
-				AD0F3A491CA1D3F100CDC1E2 /* AppDelegate.swift */,
-				AD57DDA61CB5A55600F75893 /* RecipesListViewController.swift */,
-				AD061FD01CBFE035009B4448 /* RecipeTableViewCell.swift */,
-				AD57DDAC1CB5BB0700F75893 /* RecipeDetailViewController.swift */,
-				AD0F3A4B1CA1D3F100CDC1E2 /* ShoppingListViewController.swift */,
-				AD0F3A4D1CA1D3F100CDC1E2 /* Main.storyboard */,
+				ADCD63081CCFB7F1006D973F /* View */,
+				ADCD63071CCFB7CC006D973F /* Controller */,
 				AD0F3A531CA1D3F100CDC1E2 /* Assets.xcassets */,
-				AD0F3A551CA1D3F100CDC1E2 /* LaunchScreen.storyboard */,
+				AD0F3A491CA1D3F100CDC1E2 /* AppDelegate.swift */,
 				AD0F3A581CA1D3F100CDC1E2 /* Info.plist */,
-				AD0F3A501CA1D3F100CDC1E2 /* ShoppingListSingle.xcdatamodeld */,
 			);
 			path = ShoppingListSingle;
 			sourceTree = "<group>";
@@ -118,6 +113,27 @@
 				ADDB5A9A1CC1741200CBBD09 /* FavoriteRecipes.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		ADCD63071CCFB7CC006D973F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AD57DDA61CB5A55600F75893 /* RecipesListViewController.swift */,
+				AD0F3A501CA1D3F100CDC1E2 /* ShoppingListSingle.xcdatamodeld */,
+				AD57DDAC1CB5BB0700F75893 /* RecipeDetailViewController.swift */,
+				AD0F3A4B1CA1D3F100CDC1E2 /* ShoppingListViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		ADCD63081CCFB7F1006D973F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AD061FD01CBFE035009B4448 /* RecipeTableViewCell.swift */,
+				AD0F3A4D1CA1D3F100CDC1E2 /* Main.storyboard */,
+				AD0F3A551CA1D3F100CDC1E2 /* LaunchScreen.storyboard */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

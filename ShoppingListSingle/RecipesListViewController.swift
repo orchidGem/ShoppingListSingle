@@ -49,12 +49,8 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
         
         super.viewWillAppear(animated)
         
-        print("view will appear")
-        
         if toggleRecipesButton.selectedSegmentIndex == 1 {
             recipes = FavoriteRecipes.sharedInstance.favoriteRecipes
-            print("favorites is selected on view will appear. Number of favorites is: ")
-            print(FavoriteRecipes.sharedInstance.favoriteRecipes.count)
             recipesTableView.reloadData()
             
         }
@@ -68,8 +64,6 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
             recipes = Recipe.allRecipes
         } else { // Favorites
             recipes = FavoriteRecipes.sharedInstance.favoriteRecipes
-            print("Toggled to Favorites. Number of recipes is: ")
-            print(FavoriteRecipes.sharedInstance.favoriteRecipes.count)
         }
         
         recipesTableView.reloadData()
@@ -110,9 +104,7 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
             
             // If show ALL recipes, load more recipes
             if toggleRecipesButton.selectedSegmentIndex == 0 {
-                
-                print("last cell")
-                
+   
                 paginationCount+=1
                 
                 // Load more recipes
@@ -121,7 +113,6 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
                     if success {
                         
                         dispatch_async(dispatch_get_main_queue(), {
-                            print("new recipes fetched")
                             self.recipes = Recipe.allRecipes
                             self.recipesTableView.reloadData()
                         })

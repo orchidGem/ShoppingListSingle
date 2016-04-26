@@ -41,12 +41,10 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
         
         // Get recipe ingredients
         if let _ = recipe.ingredients {
-            print("ingredients already listed")
             self.ingredientsLabel.text = recipe.ingredients!.joinWithSeparator("\n")
             self.activityMonitor.stopAnimating()
             self.activityMonitor.hidden = true
         } else {
-            print("fetching ingredients")
             FoodForkRecipes.sharedInstance.getRecipeIngredients(recipe.recipeID!) { (success, ingredients, error) in
                 if success {
                     Recipe.allRecipes[self.recipeIndex].ingredients = ingredients
@@ -69,17 +67,11 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         
-        print(FavoriteRecipes.sharedInstance.favoriteRecipeIds)
-                
         // Check if recipe is a favorite recipe
         if FavoriteRecipes.sharedInstance.favoriteRecipeIds!.contains(recipe.recipeID!) {
-            print("favorite")
             favoriteButton.tintColor = UIColor.orangeColor()
             recipe.favorite = true
-        } else {
-            print("not a favorite")
         }
-        
     }
     
     // MARK: Actions
@@ -88,24 +80,17 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
         
         // If aleady favorited, remove, otherwise, add
         if recipe.favorite {
-            print("remove from favorites")
             FavoriteRecipes.sharedInstance.removeFromFavorites(recipe)
             recipe.favorite = false
             favoriteButton.tintColor = UIColor.darkGrayColor()
         } else {
-            print("adding recipe to favorites")
             FavoriteRecipes.sharedInstance.addToFavorites(recipe)
             favoriteButton.tintColor = UIColor.orangeColor()
             recipe.favorite = true
         }
-        print(FavoriteRecipes.sharedInstance.favoriteRecipeIds)
-  
     }
     
     @IBAction func addIngredientsToList(sender: AnyObject) {
-        
-        print("Adding this many ingredients to list")
-        print(self.recipe.ingredients!.count)
         
         for ingredient in self.recipe.ingredients! {
             insertNewObject(ingredient)
@@ -118,7 +103,6 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
     @IBAction func viewDirections(sender: AnyObject) {
         let app = UIApplication.sharedApplication()
         guard let recipeURL = recipe.recipeURL else {
-            print("recipe has not online directions")
             return
         }
         app.openURL(NSURL(string: recipeURL)!)

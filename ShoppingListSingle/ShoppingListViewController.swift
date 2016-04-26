@@ -29,14 +29,9 @@ class ShoppingListViewController: UIViewController, UITextFieldDelegate, UITable
         
     }
     
-    override func viewWillAppear(animated: Bool) {
-        print(fetchedResultsController.fetchedObjects!.count)
-    }
-    
     // MARK: Actions
     
     func loadList(notification: NSNotification){
-        print("reloading list")
         self.tableView.reloadData()
     }
     
@@ -61,7 +56,6 @@ class ShoppingListViewController: UIViewController, UITextFieldDelegate, UITable
         
         // If ShoppingItems List is empty
         if fetchedResultsController.fetchedObjects!.count == 0  {
-            print("You do not have any items to share")
             return
         }
         
@@ -135,7 +129,6 @@ class ShoppingListViewController: UIViewController, UITextFieldDelegate, UITable
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        print("tapped")
         self.view.endEditing(true)
     }
     

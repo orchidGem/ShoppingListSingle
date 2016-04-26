@@ -55,7 +55,6 @@ class FavoriteRecipes: NSObject {
         
         recipes.append(recipe.recipeID!)
         NSKeyedArchiver.archiveRootObject(recipes, toFile: filePath)
-        print("recipe was saved!!!")
         
     }
     
@@ -78,7 +77,6 @@ class FavoriteRecipes: NSObject {
         }
         
         NSKeyedArchiver.archiveRootObject(recipes, toFile: filePath)
-        print("recipe was removed from favorites!!!")
         
     }
     
