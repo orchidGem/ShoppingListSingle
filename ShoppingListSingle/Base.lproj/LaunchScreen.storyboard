@@ -17,10 +17,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="NZw-zH-3wy">
-                                <rect key="frame" x="228" y="264" width="144" height="113"/>
+                                <rect key="frame" x="228" y="264" width="137" height="113"/>
                                 <subviews>
-                                    <imageView multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="72" placeholderIntrinsicHeight="72" image="appIcon" translatesAutoresizingMaskIntoConstraints="NO" id="O7J-Ju-Wem">
-                                        <rect key="frame" x="36" y="0.0" width="72" height="72"/>
+                                    <imageView multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" placeholderIntrinsicWidth="72" placeholderIntrinsicHeight="72" image="appIcon" translatesAutoresizingMaskIntoConstraints="NO" id="O7J-Ju-Wem">
+                                        <rect key="frame" x="33" y="0.0" width="72" height="72"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="72" id="Zo6-vD-8Iy"/>
                                             <constraint firstAttribute="height" constant="72" id="vge-ix-wFb"/>
@@ -32,8 +32,8 @@
                                             </mask>
                                         </variation>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="My Food Pal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3pm-LG-vOP">
-                                        <rect key="frame" x="0.0" y="77" width="144" height="36"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Grocery Pal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3pm-LG-vOP">
+                                        <rect key="frame" x="0.0" y="77" width="137" height="36"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="30"/>
                                         <color key="textColor" red="0.10567326570680624" green="0.10567326570680624" blue="0.10567326570680624" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>

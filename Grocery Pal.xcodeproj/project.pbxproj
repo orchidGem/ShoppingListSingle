@@ -26,7 +26,7 @@
 /* Begin PBXFileReference section */
 		270ABD70A5FF1CFF6AD03A1D /* Pods-ShoppingListSingle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoppingListSingle.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShoppingListSingle/Pods-ShoppingListSingle.release.xcconfig"; sourceTree = "<group>"; };
 		AD061FD01CBFE035009B4448 /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
-		AD0F3A461CA1D3F100CDC1E2 /* ShoppingListSingle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShoppingListSingle.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD0F3A461CA1D3F100CDC1E2 /* Grocery Pal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Grocery Pal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD0F3A491CA1D3F100CDC1E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD0F3A4B1CA1D3F100CDC1E2 /* ShoppingListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListViewController.swift; sourceTree = "<group>"; };
 		AD0F3A4E1CA1D3F100CDC1E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -86,7 +86,7 @@
 		AD0F3A471CA1D3F100CDC1E2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AD0F3A461CA1D3F100CDC1E2 /* ShoppingListSingle.app */,
+				AD0F3A461CA1D3F100CDC1E2 /* Grocery Pal.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -139,9 +139,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AD0F3A451CA1D3F100CDC1E2 /* ShoppingListSingle */ = {
+		AD0F3A451CA1D3F100CDC1E2 /* Grocery Pal */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AD0F3A5B1CA1D3F100CDC1E2 /* Build configuration list for PBXNativeTarget "ShoppingListSingle" */;
+			buildConfigurationList = AD0F3A5B1CA1D3F100CDC1E2 /* Build configuration list for PBXNativeTarget "Grocery Pal" */;
 			buildPhases = (
 				6D2825BA73AB4AB45797263C /* Check Pods Manifest.lock */,
 				AD0F3A421CA1D3F100CDC1E2 /* Sources */,
@@ -154,9 +154,9 @@
 			);
 			dependencies = (
 			);
-			name = ShoppingListSingle;
+			name = "Grocery Pal";
 			productName = ShoppingListSingle;
-			productReference = AD0F3A461CA1D3F100CDC1E2 /* ShoppingListSingle.app */;
+			productReference = AD0F3A461CA1D3F100CDC1E2 /* Grocery Pal.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -174,7 +174,7 @@
 					};
 				};
 			};
-			buildConfigurationList = AD0F3A411CA1D3F100CDC1E2 /* Build configuration list for PBXProject "ShoppingListSingle" */;
+			buildConfigurationList = AD0F3A411CA1D3F100CDC1E2 /* Build configuration list for PBXProject "Grocery Pal" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -187,7 +187,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AD0F3A451CA1D3F100CDC1E2 /* ShoppingListSingle */,
+				AD0F3A451CA1D3F100CDC1E2 /* Grocery Pal */,
 			);
 		};
 /* End PBXProject section */
@@ -383,8 +383,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ShoppingListSingle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ivie.ShoppingListSingle;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ivie.GroceryPal;
+				PRODUCT_NAME = "Grocery Pal";
 				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
@@ -398,8 +398,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ShoppingListSingle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ivie.ShoppingListSingle;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ivie.GroceryPal;
+				PRODUCT_NAME = "Grocery Pal";
 				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
@@ -407,7 +407,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AD0F3A411CA1D3F100CDC1E2 /* Build configuration list for PBXProject "ShoppingListSingle" */ = {
+		AD0F3A411CA1D3F100CDC1E2 /* Build configuration list for PBXProject "Grocery Pal" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AD0F3A591CA1D3F100CDC1E2 /* Debug */,
@@ -416,7 +416,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AD0F3A5B1CA1D3F100CDC1E2 /* Build configuration list for PBXNativeTarget "ShoppingListSingle" */ = {
+		AD0F3A5B1CA1D3F100CDC1E2 /* Build configuration list for PBXNativeTarget "Grocery Pal" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AD0F3A5C1CA1D3F100CDC1E2 /* Debug */,
