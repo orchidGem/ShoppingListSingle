@@ -119,9 +119,9 @@
 			isa = PBXGroup;
 			children = (
 				AD57DDA61CB5A55600F75893 /* RecipesListViewController.swift */,
-				AD0F3A501CA1D3F100CDC1E2 /* ShoppingListSingle.xcdatamodeld */,
 				AD57DDAC1CB5BB0700F75893 /* RecipeDetailViewController.swift */,
 				AD0F3A4B1CA1D3F100CDC1E2 /* ShoppingListViewController.swift */,
+				AD0F3A501CA1D3F100CDC1E2 /* ShoppingListSingle.xcdatamodeld */,
 			);
 			name = Controller;
 			sourceTree = "<group>";

@@ -19,12 +19,12 @@ class FoodForkRecipes {
             .responseJSON { response in
                 
                 guard let parsedResult = response.result.value else {
-                    print("error parsing data")
+                    completionHandler(success: false, error: "error parsing data")
                     return
                 }
                 
                 guard let recipesArray = parsedResult["recipes"] as? NSArray else {
-                    print("cannot find recipes key in \(parsedResult)")
+                    completionHandler(success: false, error: "cannot find recipes key in \(parsedResult)")
                     return
                 }
                 
@@ -45,18 +45,18 @@ class FoodForkRecipes {
         
     }
     
-    func getRecipeFromId(recipeID: String, completionHandler: (success: Bool, recipeResults: Recipe, error: String?) -> Void) {
+    func getRecipeFromId(recipeID: String, completionHandler: (success: Bool, recipeResults: Recipe?, error: String?) -> Void) {
         
         Alamofire.request(.GET, "http://food2fork.com/api/get", parameters: ["key":"46a0a82a9f10b597b08a4b2adb7ca574", "rId":recipeID])
             .responseJSON { response in
                 
                 guard let parsedResult = response.result.value else {
-                    print("error parsing data")
+                    completionHandler(success: false, recipeResults: nil, error: "error parsing data")
                     return
                 }
    
                 guard let recipeDictionary = parsedResult["recipe"] as? NSDictionary else {
-                    print("cannot find recipe key in \(parsedResult)")
+                    completionHandler(success: false, recipeResults: nil, error: "cannot find recipe key in \(parsedResult)")
                     return
                 }
                 
@@ -75,23 +75,23 @@ class FoodForkRecipes {
         
     }
     
-    func getRecipeIngredients(recipeID: String, completionHandler: (success: Bool, ingredients: [String], error: String?) -> Void) {
+    func getRecipeIngredients(recipeID: String, completionHandler: (success: Bool, ingredients: [String]?, error: String?) -> Void) {
         
         Alamofire.request(.GET, "http://food2fork.com/api/get", parameters: ["key":"46a0a82a9f10b597b08a4b2adb7ca574", "rId":recipeID])
             .responseJSON { response in
                 
                 guard let parsedResult = response.result.value else {
-                    print("error parsing data")
+                    completionHandler(success: false, ingredients: nil, error: "error parsing data")
                     return
                 }
             
                 guard let recipe = parsedResult["recipe"] as? NSDictionary else {
-                    print("cannot find recipe key in \(parsedResult)")
+                    completionHandler(success: false, ingredients: nil, error: "cannot find recipe key in \(parsedResult)")
                     return
                 }
                 
                 guard let ingredientsArray = recipe["ingredients"] as? NSArray else {
-                    print("cannot find ingredient key in \(parsedResult)")
+                    completionHandler(success: false, ingredients: nil, error: "cannot find ingredient key in \(parsedResult)")
                     return
                 }
                 

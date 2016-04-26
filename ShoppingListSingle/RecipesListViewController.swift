@@ -37,7 +37,11 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
                 })
                 
             } else {
-                print("error with recipe request")
+                let alertController = UIAlertController(title: nil, message: "Error retrieving recipes: \(errorString)", preferredStyle: .Alert)
+                let dismissAction = UIAlertAction(title: "Dismiss", style: .Cancel) { (action) in }
+                alertController.addAction(dismissAction)
+                self.presentViewController(alertController, animated: true, completion: nil)
+                return
             }
         }
         

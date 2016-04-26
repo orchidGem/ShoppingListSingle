@@ -58,7 +58,13 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
                     
                     
                 } else {
-                    self.ingredientsLabel.text = "Unable to load ingredients"
+                    let alertController = UIAlertController(title: nil, message: "Error retreiving ingredients \(error)", preferredStyle: .Alert)
+                    let dismissAction = UIAlertAction(title: "Dismiss", style: .Cancel) { (action) in }
+                    alertController.addAction(dismissAction)
+                    
+                    self.presentViewController(alertController, animated: true, completion: nil)
+                    
+                    return
                 }
             }
         }

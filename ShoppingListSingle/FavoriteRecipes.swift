@@ -34,7 +34,7 @@ class FavoriteRecipes: NSObject {
             for recipeId in recipes {
                 FoodForkRecipes.sharedInstance.getRecipeFromId(recipeId, completionHandler: { (success, recipeResults, error) in
                     if success {
-                        self.favoriteRecipes.append(recipeResults)
+                        self.favoriteRecipes.append(recipeResults!)
 
                     }
                 })
