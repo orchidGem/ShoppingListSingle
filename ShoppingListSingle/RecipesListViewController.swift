@@ -19,6 +19,7 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
     var paginationCount = 1
     @IBOutlet weak var toggleRecipesButton: UISegmentedControl!
     @IBOutlet weak var activityMonitor: UIActivityIndicatorView!
+    @IBOutlet weak var loadMoreActivityMonitor: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         
@@ -26,6 +27,8 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
         
         recipesTableView.delegate = self
         recipesTableView.dataSource = self
+        
+        loadMoreActivityMonitor.stopAnimating()
         
         // Fetch Recipes
         FoodForkRecipes.sharedInstance.getRecipeList(page: paginationCount) { (success,  errorString) in
@@ -108,6 +111,8 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
             
             // If show ALL recipes, load more recipes
             if toggleRecipesButton.selectedSegmentIndex == 0 {
+                
+                loadMoreActivityMonitor.startAnimating()
    
                 paginationCount+=1
                 
@@ -119,6 +124,7 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
                         dispatch_async(dispatch_get_main_queue(), {
                             self.recipes = Recipe.allRecipes
                             self.recipesTableView.reloadData()
+                            self.loadMoreActivityMonitor.stopAnimating()
                         })
                         
                     } else {

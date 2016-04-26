@@ -140,10 +140,16 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="gNV-9b-dPd">
                                 <rect key="frame" x="290" y="290" width="20" height="20"/>
                             </activityIndicatorView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="iBo-bp-ByF" userLabel="Load More Activity Monitor">
+                                <rect key="frame" x="290" y="523" width="20" height="20"/>
+                                <color key="color" red="0.1056732657" green="0.1056732657" blue="0.1056732657" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Hx3-9b-Xr9" secondAttribute="bottom" constant="44" id="FUj-gr-wDP"/>
+                            <constraint firstItem="N3j-Fq-JXO" firstAttribute="top" secondItem="iBo-bp-ByF" secondAttribute="bottom" constant="8" id="Oh9-bD-4hb"/>
+                            <constraint firstItem="iBo-bp-ByF" firstAttribute="centerX" secondItem="B4F-19-daK" secondAttribute="centerX" id="UuV-NN-mR7"/>
                             <constraint firstItem="Hx3-9b-Xr9" firstAttribute="top" secondItem="0An-yn-Mhp" secondAttribute="bottom" constant="-64" id="YR2-du-iV0"/>
                             <constraint firstAttribute="trailing" secondItem="Hx3-9b-Xr9" secondAttribute="trailing" id="jqT-Fj-hLN"/>
                             <constraint firstItem="gNV-9b-dPd" firstAttribute="centerX" secondItem="B4F-19-daK" secondAttribute="centerX" id="nhO-jC-0cB"/>
@@ -169,6 +175,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="activityMonitor" destination="gNV-9b-dPd" id="uh8-bd-moA"/>
+                        <outlet property="loadMoreActivityMonitor" destination="iBo-bp-ByF" id="oKB-AE-6fd"/>
                         <outlet property="recipesTableView" destination="Hx3-9b-Xr9" id="zix-ND-aTq"/>
                         <outlet property="toggleRecipesButton" destination="5xi-oL-23X" id="PQv-tT-nnw"/>
                     </connections>
