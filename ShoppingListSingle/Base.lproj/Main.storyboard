@@ -194,8 +194,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="LEl-If-Z8q" kind="relationship" relationship="viewControllers" id="6JT-Sn-3Rh"/>
                         <segue destination="J0w-El-YAD" kind="relationship" relationship="viewControllers" id="uwD-3M-Wdr"/>
+                        <segue destination="LEl-If-Z8q" kind="relationship" relationship="viewControllers" id="6JT-Sn-3Rh"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vbc-VL-g3w" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -272,7 +272,7 @@
         <scene sceneID="Vj6-Ia-1H4">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="J0w-El-YAD" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Shopping List" id="fln-e9-TaF"/>
+                    <tabBarItem key="tabBarItem" title="Shopping List" image="shoppingList" id="fln-e9-TaF"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="AO8-kx-MDC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
