@@ -9,7 +9,7 @@
         <!--Recipes-->
         <scene sceneID="VkV-op-GCE">
             <objects>
-                <viewController title="Recipes" id="UyZ-IL-ut9" customClass="RecipesListViewController" customModule="ShoppingListSingle" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Recipes" id="UyZ-IL-ut9" customClass="RecipesListViewController" customModule="Grocery_Pal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0An-yn-Mhp"/>
                         <viewControllerLayoutGuide type="bottom" id="N3j-Fq-JXO"/>
@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RecipeCell" rowHeight="110" id="Zgr-Rb-PKQ" customClass="RecipeTableViewCell" customModule="ShoppingListSingle" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RecipeCell" rowHeight="110" id="Zgr-Rb-PKQ" customClass="RecipeTableViewCell" customModule="Grocery_Pal" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="600" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Zgr-Rb-PKQ" id="pWc-Zg-ozx">
@@ -205,7 +205,7 @@
         <!--Shopping List-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ShoppingListViewController" customModule="ShoppingListSingle" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ShoppingListViewController" customModule="Grocery_Pal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -309,7 +309,7 @@
         <!--Recipe Detail View Controller-->
         <scene sceneID="cMq-f1-T4e">
             <objects>
-                <viewController storyboardIdentifier="RecipeDetailViewController" id="JCH-hU-H7g" customClass="RecipeDetailViewController" customModule="ShoppingListSingle" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RecipeDetailViewController" id="JCH-hU-H7g" customClass="RecipeDetailViewController" customModule="Grocery_Pal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dKq-O3-MPX"/>
                         <viewControllerLayoutGuide type="bottom" id="38a-mp-MDN"/>

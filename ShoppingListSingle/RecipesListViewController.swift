@@ -137,12 +137,16 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        let recipe = recipes[indexPath.row]
-        
         let recipeDetailViewController = storyboard?.instantiateViewControllerWithIdentifier("RecipeDetailViewController") as! RecipeDetailViewController
  
-        recipeDetailViewController.recipe = recipe
         recipeDetailViewController.recipeIndex = indexPath.row
+        
+        // Determine if in all recipes or favorite recipes
+        if toggleRecipesButton.selectedSegmentIndex == 0 {
+            recipeDetailViewController.recipeFavorite = false
+        } else {
+            recipeDetailViewController.recipeFavorite = true
+        }
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         

@@ -21,6 +21,7 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
     
     var recipe: Recipe!
     var recipeIndex: Int!
+    var recipeFavorite: Bool?
     
     // Managed Object for Shopping Items
     lazy var managedObjectContext: NSManagedObjectContext = {
@@ -33,7 +34,11 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
         
         self.ingredientsLabel.text = ""
         
-        let recipe = Recipe.allRecipes[recipeIndex]
+        if self.recipeFavorite == true {
+            recipe = FavoriteRecipes.sharedInstance.favoriteRecipes[recipeIndex]
+        } else {
+            recipe = Recipe.allRecipes[recipeIndex]
+        }
         
         recipeTitle.text = recipe.title
         let imageURL = NSURL(string: recipe.imageURL!)
@@ -47,7 +52,14 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
         } else {
             FoodForkRecipes.sharedInstance.getRecipeIngredients(recipe.recipeID!) { (success, ingredients, error) in
                 if success {
-                    Recipe.allRecipes[self.recipeIndex].ingredients = ingredients
+                    
+                    // Update ingredients in either All recipes array or Favorite recipes array
+                    if self.recipeFavorite == true {
+                        FavoriteRecipes.sharedInstance.favoriteRecipes[self.recipeIndex].ingredients = ingredients
+                    } else {
+                        Recipe.allRecipes[self.recipeIndex].ingredients = ingredients
+                    }
+                    
                     self.recipe.ingredients = ingredients
                     
                     dispatch_async(dispatch_get_main_queue(), {
