@@ -30,26 +30,10 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
         
         loadMoreActivityMonitor.stopAnimating()
         
-        // Fetch Recipes
-        FoodForkRecipes.sharedInstance.getRecipeList(page: paginationCount) { (success,  errorString) in
-            if success {
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.recipes = Recipe.allRecipes
-                    self.recipesTableView.reloadData()
-                    self.activityMonitor.stopAnimating()
-                })
-                
-            } else {
-                let alertController = UIAlertController(title: nil, message: "Error retrieving recipes: \(errorString)", preferredStyle: .Alert)
-                let dismissAction = UIAlertAction(title: "Dismiss", style: .Cancel) { (action) in }
-                alertController.addAction(dismissAction)
-                self.presentViewController(alertController, animated: true, completion: nil)
-                return
-            }
-        }
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.reachabilityStatusChanged), name: "ReachStatusChanged", object: nil)
         
-        // Fetch Favorite Recipes
-        FavoriteRecipes.sharedInstance.fetchFavoriteRecipes()
+        self.reachabilityStatusChanged()
+
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -151,6 +135,57 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         navigationController?.pushViewController(recipeDetailViewController, animated: true)
+    }
+    
+    // MARK: Reachability Notification
+    func reachabilityStatusChanged() {
+        if reachabilityStatus == kNOTREACHABLE {
+            
+            let alertController = UIAlertController(title: "Network Error", message: "Unable to establish a network connection", preferredStyle: .Alert)
+            
+            let settingsAction = UIAlertAction(title: "Settings", style: .Default, handler: { (UIAlertAction) in
+                let settingsUrl = NSURL(string: UIApplicationOpenSettingsURLString)
+                if let url = settingsUrl {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        UIApplication.sharedApplication().openURL(url)
+                    })
+                }
+            })
+            
+            alertController.addAction(settingsAction)
+            
+            let dismissAction = UIAlertAction(title: "Dismiss", style: .Cancel) { (action) in }
+            alertController.addAction(dismissAction)
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                self.parentViewController?.presentViewController(alertController, animated: true, completion: nil)
+            })
+        } else {
+            // Fetch Recipes
+            FoodForkRecipes.sharedInstance.getRecipeList(page: paginationCount) { (success,  errorString) in
+                if success {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.recipes = Recipe.allRecipes
+                        self.recipesTableView.reloadData()
+                        self.activityMonitor.stopAnimating()
+                    })
+                    
+                } else {
+                    let alertController = UIAlertController(title: nil, message: "Error retrieving recipes: \(errorString)", preferredStyle: .Alert)
+                    let dismissAction = UIAlertAction(title: "Dismiss", style: .Cancel) { (action) in }
+                    alertController.addAction(dismissAction)
+                    self.presentViewController(alertController, animated: true, completion: nil)
+                    return
+                }
+            }
+            
+            // Fetch Favorite Recipes
+            FavoriteRecipes.sharedInstance.fetchFavoriteRecipes()
+        }
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "ReachStatusChanged", object: nil)
     }
     
 }
