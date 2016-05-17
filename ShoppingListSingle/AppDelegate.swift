@@ -40,7 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // Check if Reachability has changed
     func reachabilityChanged(notification: NSNotification) {
-        print("Reachability Status Changed")
         reachability = notification.object as? Reachability
         self.statusChangedWithReachability(reachability!)
     }
@@ -49,18 +48,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func statusChangedWithReachability(currentReachabilityStatus: Reachability) {
         
         let networkStatus: NetworkStatus = currentReachabilityStatus.currentReachabilityStatus()
-        //let statusString: String = ""
-        
-        print("Status value: \(networkStatus.rawValue)")
         
         if networkStatus.rawValue == NotReachable.rawValue {
-            print("Network not Reachable")
             reachabilityStatus = kNOTREACHABLE
         } else if networkStatus.rawValue == ReachableViaWiFi.rawValue {
-            print("Reachable via WIFI")
             reachabilityStatus = kREACHABLEWITHWIFI
         } else {
-            print("Reachable via WWAN")
             reachabilityStatus = kREACABLEWITHWWAN
         }
         
