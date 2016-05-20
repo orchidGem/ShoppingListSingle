@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShoppingListSingle/RecipeDetailViewController.swift"
-            timestampString = "485404399.890113"
+            timestampString = "485477567.364771"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "addIngredientsToList(_:)"
             landmarkType = "5">
          </BreakpointContent>

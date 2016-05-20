@@ -25,14 +25,20 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
         
         super.viewDidLoad()
         
+        print(recipes.count)
+        
         recipesTableView.delegate = self
         recipesTableView.dataSource = self
         
+        activityMonitor.stopAnimating()
         loadMoreActivityMonitor.stopAnimating()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.reachabilityStatusChanged), name: "ReachStatusChanged", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.detectNetworkConnection), name: "ReachStatusChanged", object: nil)
         
-        self.reachabilityStatusChanged()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.fetchInitialRecipes), name: "ReachStatusChanged", object: nil)
+        
+        detectNetworkConnection()
+        fetchInitialRecipes()
 
     }
     
@@ -48,6 +54,37 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     // MARK: Actions
+    
+    // MARK: Reachability Notification
+    func fetchInitialRecipes() {
+        
+        if reachabilityStatus != kNOTREACHABLE && recipes.count == 0 {
+            
+            activityMonitor.startAnimating()
+
+            FoodForkRecipes.sharedInstance.getRecipeList(page: paginationCount) { (success,  errorString) in
+                if success {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.recipes = Recipe.allRecipes
+                        self.recipesTableView.reloadData()
+                        self.activityMonitor.stopAnimating()
+                    })
+                    
+                } else {
+                    let alertController = UIAlertController(title: nil, message: "Error retrieving recipes: \(errorString)", preferredStyle: .Alert)
+                    let dismissAction = UIAlertAction(title: "Dismiss", style: .Cancel) { (action) in }
+                    alertController.addAction(dismissAction)
+                    self.presentViewController(alertController, animated: true, completion: nil)
+                    return
+                }
+            }
+            
+            // Fetch Favorite Recipes
+            FavoriteRecipes.sharedInstance.fetchFavoriteRecipes()
+        } else {
+            activityMonitor.stopAnimating()
+        }
+    }
     
     //Toggle Recipes for All and Favorites
     @IBAction func toggleRecipes(sender: AnyObject) {
@@ -89,9 +126,8 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     // Load More Recipes if on the last cell
-    
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        if (indexPath.row + 1) == recipes.count {
+        if (indexPath.row + 1) == recipes.count && reachabilityStatus != kNOTREACHABLE {
             
             // If show ALL recipes, load more recipes
             if toggleRecipesButton.selectedSegmentIndex == 0 {
@@ -135,55 +171,6 @@ class RecipesListViewController: UIViewController, UITableViewDataSource, UITabl
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         navigationController?.pushViewController(recipeDetailViewController, animated: true)
-    }
-    
-    // MARK: Reachability Notification
-    func reachabilityStatusChanged() {
-        if reachabilityStatus == kNOTREACHABLE {
-            
-            let alertController = UIAlertController(title: "Network Error", message: "Unable to establish a network connection", preferredStyle: .Alert)
-            
-            let settingsAction = UIAlertAction(title: "Settings", style: .Default, handler: { (UIAlertAction) in
-                let settingsUrl = NSURL(string: UIApplicationOpenSettingsURLString)
-                if let url = settingsUrl {
-                    dispatch_async(dispatch_get_main_queue(), {
-                        UIApplication.sharedApplication().openURL(url)
-                    })
-                }
-            })
-            
-            alertController.addAction(settingsAction)
-            
-            let dismissAction = UIAlertAction(title: "Dismiss", style: .Cancel) { (action) in }
-            alertController.addAction(dismissAction)
-            
-            dispatch_async(dispatch_get_main_queue(), {
-                self.parentViewController?.presentViewController(alertController, animated: true, completion: nil)
-                self.activityMonitor.stopAnimating()
-                self.loadMoreActivityMonitor.stopAnimating()
-            })
-        } else {
-            // Fetch Recipes
-            FoodForkRecipes.sharedInstance.getRecipeList(page: paginationCount) { (success,  errorString) in
-                if success {
-                    dispatch_async(dispatch_get_main_queue(), {
-                        self.recipes = Recipe.allRecipes
-                        self.recipesTableView.reloadData()
-                        self.activityMonitor.stopAnimating()
-                    })
-                    
-                } else {
-                    let alertController = UIAlertController(title: nil, message: "Error retrieving recipes: \(errorString)", preferredStyle: .Alert)
-                    let dismissAction = UIAlertAction(title: "Dismiss", style: .Cancel) { (action) in }
-                    alertController.addAction(dismissAction)
-                    self.presentViewController(alertController, animated: true, completion: nil)
-                    return
-                }
-            }
-            
-            // Fetch Favorite Recipes
-            FavoriteRecipes.sharedInstance.fetchFavoriteRecipes()
-        }
     }
     
     deinit {

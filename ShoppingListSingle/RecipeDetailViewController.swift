@@ -18,7 +18,6 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
     @IBOutlet weak var activityMonitor: UIActivityIndicatorView!
     
-    
     var recipe: Recipe!
     var recipeIndex: Int!
     var recipeFavorite: Bool?
@@ -32,9 +31,9 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.ingredientsLabel.text = ""
+        ingredientsLabel.text = ""
         
-        if self.recipeFavorite == true {
+        if recipeFavorite == true {
             recipe = FavoriteRecipes.sharedInstance.favoriteRecipes[recipeIndex]
         } else {
             recipe = Recipe.allRecipes[recipeIndex]
@@ -42,7 +41,9 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
         
         recipeTitle.text = recipe.title
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.loadIngredients), name: "ReachStatusChanged", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.detectNetworkConnection), name: "ReachStatusChanged", object: nil)
+        
+        detectNetworkConnection()
         
         // Get recipe ingredients
         if let _ = recipe.ingredients {
@@ -50,7 +51,11 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
             self.activityMonitor.stopAnimating()
             self.activityMonitor.hidden = true
         } else {
-            loadIngredients()
+            if reachabilityStatus != kNOTREACHABLE {
+                loadIngredients()
+            } else {
+                activityMonitor.stopAnimating()
+            }
         }
     }
     
@@ -67,61 +72,37 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
     // MARK: Actions
     
     func loadIngredients() {
-        if reachabilityStatus == kNOTREACHABLE {
-            
-            let alertController = UIAlertController(title: "Network Error", message: "Unable to establish a network connection", preferredStyle: .Alert)
-            
-            let settingsAction = UIAlertAction(title: "Settings", style: .Default, handler: { (UIAlertAction) in
-                let settingsUrl = NSURL(string: UIApplicationOpenSettingsURLString)
-                if let url = settingsUrl {
-                    dispatch_async(dispatch_get_main_queue(), {
-                        UIApplication.sharedApplication().openURL(url)
-                    })
-                }
-            })
-            
-            alertController.addAction(settingsAction)
-            
-            let dismissAction = UIAlertAction(title: "Dismiss", style: .Cancel) { (action) in }
-            alertController.addAction(dismissAction)
-            
-            dispatch_async(dispatch_get_main_queue(), {
-                self.parentViewController?.presentViewController(alertController, animated: true, completion: nil)
-                self.activityMonitor.stopAnimating()
-            })
-        } else {
-            
-            let imageURL = NSURL(string: recipe.imageURL!)
-            recipeImage.image = UIImage( data: NSData(contentsOfURL: imageURL!)! )
-            
-            FoodForkRecipes.sharedInstance.getRecipeIngredients(recipe.recipeID!) { (success, ingredients, error) in
-                if success {
-                    
-                    // Update ingredients in either All recipes array or Favorite recipes array
-                    if self.recipeFavorite == true {
-                        FavoriteRecipes.sharedInstance.favoriteRecipes[self.recipeIndex].ingredients = ingredients
-                    } else {
-                        Recipe.allRecipes[self.recipeIndex].ingredients = ingredients
-                    }
-                    
-                    self.recipe.ingredients = ingredients
-                    
-                    dispatch_async(dispatch_get_main_queue(), {
-                        self.ingredientsLabel.text = self.recipe.ingredients!.joinWithSeparator("\n")
-                        self.activityMonitor.stopAnimating()
-                        self.activityMonitor.hidden = true
-                    })
-                    
-                    
+
+        let imageURL = NSURL(string: recipe.imageURL!)
+        recipeImage.image = UIImage( data: NSData(contentsOfURL: imageURL!)! )
+        
+        FoodForkRecipes.sharedInstance.getRecipeIngredients(recipe.recipeID!) { (success, ingredients, error) in
+            if success {
+                
+                // Update ingredients in either All recipes array or Favorite recipes array
+                if self.recipeFavorite == true {
+                    FavoriteRecipes.sharedInstance.favoriteRecipes[self.recipeIndex].ingredients = ingredients
                 } else {
-                    let alertController = UIAlertController(title: nil, message: "Error retreiving ingredients \(error)", preferredStyle: .Alert)
-                    let dismissAction = UIAlertAction(title: "Dismiss", style: .Cancel) { (action) in }
-                    alertController.addAction(dismissAction)
-                    
-                    self.presentViewController(alertController, animated: true, completion: nil)
-                    
-                    return
+                    Recipe.allRecipes[self.recipeIndex].ingredients = ingredients
                 }
+                
+                self.recipe.ingredients = ingredients
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.ingredientsLabel.text = self.recipe.ingredients!.joinWithSeparator("\n")
+                    self.activityMonitor.stopAnimating()
+                    self.activityMonitor.hidden = true
+                })
+                
+                
+            } else {
+                let alertController = UIAlertController(title: nil, message: "Error retreiving ingredients \(error)", preferredStyle: .Alert)
+                let dismissAction = UIAlertAction(title: "Dismiss", style: .Cancel) { (action) in }
+                alertController.addAction(dismissAction)
+                
+                self.presentViewController(alertController, animated: true, completion: nil)
+                
+                return
             }
         }
     }
