@@ -87,6 +87,7 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
             
             dispatch_async(dispatch_get_main_queue(), {
                 self.parentViewController?.presentViewController(alertController, animated: true, completion: nil)
+                self.activityMonitor.stopAnimating()
             })
         } else {
             
