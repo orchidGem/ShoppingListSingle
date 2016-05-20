@@ -41,8 +41,8 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
         }
         
         recipeTitle.text = recipe.title
-        let imageURL = NSURL(string: recipe.imageURL!)
-        recipeImage.image = UIImage( data: NSData(contentsOfURL: imageURL!)! )
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.loadIngredients), name: "ReachStatusChanged", object: nil)
         
         // Get recipe ingredients
         if let _ = recipe.ingredients {
@@ -50,6 +50,49 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
             self.activityMonitor.stopAnimating()
             self.activityMonitor.hidden = true
         } else {
+            loadIngredients()
+        }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        
+        // Check if recipe is a favorite recipe
+        if FavoriteRecipes.sharedInstance.favoriteRecipeIds!.contains(recipe.recipeID!) {
+            favoriteButton.tintColor = UIColor.orangeColor()
+            recipe.favorite = true
+        }
+    }
+    
+    // MARK: Actions
+    
+    func loadIngredients() {
+        if reachabilityStatus == kNOTREACHABLE {
+            
+            let alertController = UIAlertController(title: "Network Error", message: "Unable to establish a network connection", preferredStyle: .Alert)
+            
+            let settingsAction = UIAlertAction(title: "Settings", style: .Default, handler: { (UIAlertAction) in
+                let settingsUrl = NSURL(string: UIApplicationOpenSettingsURLString)
+                if let url = settingsUrl {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        UIApplication.sharedApplication().openURL(url)
+                    })
+                }
+            })
+            
+            alertController.addAction(settingsAction)
+            
+            let dismissAction = UIAlertAction(title: "Dismiss", style: .Cancel) { (action) in }
+            alertController.addAction(dismissAction)
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                self.parentViewController?.presentViewController(alertController, animated: true, completion: nil)
+            })
+        } else {
+            
+            let imageURL = NSURL(string: recipe.imageURL!)
+            recipeImage.image = UIImage( data: NSData(contentsOfURL: imageURL!)! )
+            
             FoodForkRecipes.sharedInstance.getRecipeIngredients(recipe.recipeID!) { (success, ingredients, error) in
                 if success {
                     
@@ -82,18 +125,6 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(true)
-        
-        // Check if recipe is a favorite recipe
-        if FavoriteRecipes.sharedInstance.favoriteRecipeIds!.contains(recipe.recipeID!) {
-            favoriteButton.tintColor = UIColor.orangeColor()
-            recipe.favorite = true
-        }
-    }
-    
-    // MARK: Actions
-    
     @IBAction func addRecipeToFavorites(sender: AnyObject) {
         
         // If aleady favorited, remove, otherwise, add
@@ -110,12 +141,13 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
     
     @IBAction func addIngredientsToList(sender: AnyObject) {
         
-        for ingredient in self.recipe.ingredients! {
-            insertNewObject(ingredient)
+        if let _ = self.recipe.ingredients {
+            for ingredient in self.recipe.ingredients! {
+                insertNewObject(ingredient)
+            }
+            
+            addToListButton.setTitle("Items Added!", forState: .Normal)
         }
-        
-        addToListButton.setTitle("Items Added!", forState: .Normal)
-        
     }
     
     @IBAction func viewDirections(sender: AnyObject) {
@@ -175,5 +207,8 @@ class RecipeDetailViewController: UIViewController, NSFetchedResultsControllerDe
         }
     }
     
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "ReachStatusChanged", object: nil)
+    }
 
 }
